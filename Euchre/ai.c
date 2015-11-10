@@ -13,10 +13,15 @@ int random_bet();
 int random_trump();
 
 int human_bet() {
-    return random_bet();
+    return computer_bet(); //replace this with actual menu drivers
 }
 int computer_bet() {
-    return random_bet();
+	int trumpTest[6];
+	for (int i=0; i<6; i++) {
+		trumpTest[i]=2; // assume 2 tricks from your partner
+	}
+	
+	return 0;
 }
 
 int get_card(player_t human, card_t trick[]) {
@@ -25,7 +30,7 @@ int get_card(player_t human, card_t trick[]) {
     //return choose_card(human, trick);
 }
 
-int choose_card(player_t computer, card_t trick[], int tricksPlayed) {
+int choose_card(player_t computer, card_t trick[4], int tricksPlayed) {
     //make dummy AI
     
     //choose a card valid to play (follow suit)
@@ -51,18 +56,21 @@ int random_bet() {
     return card_random();
 }
 
-int is_valid_card(card_t hand[], card_t test, card_t trick[]) {
+int is_valid_card(card_t hand[], card_t test, card_t trick[4]) {
+	// Don't play blank spaces
     if (test.colour == BLANK || test.rank == NONE)
         return 0;
+	// Any card is good if it's your lead
     if (trick[0].colour == BLANK || trick[0].rank == NONE)
         return 1;
-    if (test.colour == trick[0].colour)
+    if (test.colour == trick[0].colour || test.colour == TRUMP)
         return 1;
+	// Checks that you don't have any cards matching the suit of the first card
     for (int i = 0; i < 12; i++) {
         if (hand[i].colour == trick[0].colour)
             return 0;
     }
-    
+    // If everything else checks out…
     return 1;
 }
 

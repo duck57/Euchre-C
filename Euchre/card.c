@@ -34,27 +34,43 @@ char *display_card_full(card_t card) {
     return temp;
 }
 
+// Use this comparison for sort operators to group cards by suit in your hand
 int compare_card(const void *a, const void *b) {
     card_t ad = *(card_t*)a;
     card_t bd = *(card_t*)b;
-    
-    int s = ad.colour - bd.colour;
+	int s = ad.colour - bd.colour;
     int r = ad.rank - bd.rank;
-    
-    if (s != 0)
-        return s;
-    else
+    if (s == 0)
         return r;
+    else
+        return s;
+	return 420;
 }
 
-int compare_card_c(const card_t a, const card_t b) {
-    int s = a.colour - b.colour;
+/* returns the difference (card a - card b)
+	positive values mean card a won; b wins if this returns a negative value */
+int compare_card_c(const card_t a, const card_t b, int trumpGame, int LoWin) {
+	int s = 0;
+	if (trumpGame)
+		s = a.colour - b.colour; // compare suit first for trump-based games
     int r = a.rank - b.rank;
-    
-    if (s != 0)
-        return s;
-    else
+	if (LoWin)
+		r = -r;
+    if (s == 0)
         return r;
+    else
+        return s;
+	return -420; // this should never happen
+}
+
+/*	Returns if a card is following a certain suit
+	Trump is assumed to follow suit at all times*/
+int follow_suit(const card_t card, const suit_t checkSuit) {
+	if (card.colour == checkSuit || card.colour == TRUMP)
+		return 1;
+	else
+		return 0;
+	return 899;
 }
 
 int compare_suit(const card_t a, const card_t b) {

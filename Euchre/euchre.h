@@ -52,6 +52,7 @@ void play_card(int player, int cardLoc, int lead, card_t trick[]);
 int get_bets(int dealer);
 int make_euchre_trump(int trump);
 int stick_dealer(int dealer);
+int follow_suit(const card_t card, const suit_t checkSuit);
 
 
 #endif

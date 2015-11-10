@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		201CE0411BF1A22A00B723B8 /* humanIO.c in Sources */ = {isa = PBXBuildFile; fileRef = 201CE03F1BF1A22A00B723B8 /* humanIO.c */; };
 		20D33D2D18E547BB0062CC1A /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 20D33D2C18E547BB0062CC1A /* main.c */; settings = {COMPILER_FLAGS = "-o euchre"; }; };
 		20D33D2F18E547BB0062CC1A /* Euchre.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 20D33D2E18E547BB0062CC1A /* Euchre.1 */; };
 		20D33D3B18E5CA5E0062CC1A /* card.c in Sources */ = {isa = PBXBuildFile; fileRef = 20D33D3A18E5CA5E0062CC1A /* card.c */; };
@@ -30,6 +31,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		201CE03F1BF1A22A00B723B8 /* humanIO.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = humanIO.c; path = Euchre/humanIO.c; sourceTree = "<group>"; };
+		201CE0401BF1A22A00B723B8 /* humanIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = humanIO.h; path = Euchre/humanIO.h; sourceTree = "<group>"; };
 		20D33D2918E547BB0062CC1A /* Euchre */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Euchre; sourceTree = BUILT_PRODUCTS_DIR; };
 		20D33D2C18E547BB0062CC1A /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		20D33D2E18E547BB0062CC1A /* Euchre.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Euchre.1; sourceTree = "<group>"; };
@@ -59,6 +62,8 @@
 		20D33D2018E547BA0062CC1A = {
 			isa = PBXGroup;
 			children = (
+				201CE03F1BF1A22A00B723B8 /* humanIO.c */,
+				201CE0401BF1A22A00B723B8 /* humanIO.h */,
 				20D33D2B18E547BB0062CC1A /* Euchre */,
 				20D33D2A18E547BB0062CC1A /* Products */,
 			);
@@ -146,6 +151,7 @@
 				20D33D3F18E929200062CC1A /* euchre.c in Sources */,
 				20D33D4518E92DC30062CC1A /* shuffle.c in Sources */,
 				20D33D4118E929290062CC1A /* euchretest.c in Sources */,
+				201CE0411BF1A22A00B723B8 /* humanIO.c in Sources */,
 				20D33D2D18E547BB0062CC1A /* main.c in Sources */,
 				20D33D3B18E5CA5E0062CC1A /* card.c in Sources */,
 				20D33D4418E92AF50062CC1A /* ai.c in Sources */,

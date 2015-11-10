@@ -213,8 +213,24 @@ void play_hand(int dealer) {
     }
 }
 
+void reset_trick(card_t* trick) {
+	for (int i = 0; i < 4; i++) {
+		trick[i] = make_card(BLANK, NONE);
+	}
+}
+
+int score_trick(card_t trick[4]) {
+	int bigCardLoc = 0;
+	for (int i=1; i<4; i++) {
+		if (compare_card_c(trick[i], trick[bigCardLoc], 1, LoNo) > 0 && follow_suit(trick[i],trick[0].colour))
+			bigCardLoc = i;
+	}
+	return bigCardLoc;
+}
+
 int play_trick(int lead, int trump, int missing) {
     //printf("Lead %s\n", playerList[lead].name);
+	
     //gather cards
     card_t trick[4];
     for (int i = lead; i < lead+4; i++) {
@@ -231,29 +247,12 @@ int play_trick(int lead, int trump, int missing) {
     }
     
     //score cards
-    int bigCardLoc = 0;
-    if (LoNo) {
-        if (compare_card_c(trick[bigCardLoc], trick[1]) > 0 && trick[bigCardLoc].colour == trick[0].colour)
-            bigCardLoc = 1;
-        if (compare_card_c(trick[bigCardLoc], trick[2]) > 0 && trick[bigCardLoc].colour == trick[0].colour)
-            bigCardLoc = 2;
-        if (compare_card_c(trick[bigCardLoc], trick[3]) > 0 && trick[bigCardLoc].colour == trick[0].colour)
-            bigCardLoc = 3;
-    } else {
-        if (compare_card_c(trick[bigCardLoc], trick[1]) < 0 && trick[bigCardLoc].colour == trick[0].colour)
-            bigCardLoc = 1;
-        if (compare_card_c(trick[bigCardLoc], trick[2]) < 0 && trick[bigCardLoc].colour == trick[0].colour)
-            bigCardLoc = 2;
-        if (compare_card_c(trick[bigCardLoc], trick[3]) < 0 && trick[bigCardLoc].colour == trick[0].colour)
-            bigCardLoc = 3;
-    }
-    int nl = (lead+bigCardLoc)%4;
-    playerList[nl].tricks++;
-    for (int i = 0; i < 4; i++) {
-        trick[i] = make_card(BLANK, NONE);
-    }
-    //printf("%s won\n\n", playerList[nl].name);
-    return nl;
+    int bigCardLoc = score_trick(trick);
+    int newLead = (lead+bigCardLoc)%4;
+    playerList[newLead].tricks++;
+	reset_trick(trick);
+    //printf("%s won\n\n", playerList[newLead].name);
+    return newLead;
 }
 
 int get_bets(int dealer) {
@@ -286,18 +285,14 @@ int get_bets(int dealer) {
             printf("%s passes\n", playerList[i%4].name);
         }
     }
-    if (bet < 6) {
-        return stick_dealer(dealer);
-    } else {
-        if (where%2 == 0) {
-            betEW = bet;
-        } else {
-            betNS = bet;
-        }
-        printf("%s won a bet of %d and called ", playerList[where].name, bet); //trump listed later on
-        return where;
-    }
-    return -1;
+	if (where%2 == 0) {
+		betEW = bet;
+	} else {
+		betNS = bet;
+	}
+	printf("%s won a bet of %d and called ", playerList[where].name, bet); //trump listed later on
+	return where;
+    return -1; // In case something goes horribly wrong
 }
 
 
