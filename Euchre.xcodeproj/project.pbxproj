@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		20D33D2D18E547BB0062CC1A /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 20D33D2C18E547BB0062CC1A /* main.c */; };
+		20D33D2D18E547BB0062CC1A /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 20D33D2C18E547BB0062CC1A /* main.c */; settings = {COMPILER_FLAGS = "-o euchre"; }; };
 		20D33D2F18E547BB0062CC1A /* Euchre.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 20D33D2E18E547BB0062CC1A /* Euchre.1 */; };
+		20D33D3B18E5CA5E0062CC1A /* card.c in Sources */ = {isa = PBXBuildFile; fileRef = 20D33D3A18E5CA5E0062CC1A /* card.c */; };
+		20D33D3F18E929200062CC1A /* euchre.c in Sources */ = {isa = PBXBuildFile; fileRef = 20D33D3E18E929200062CC1A /* euchre.c */; };
+		20D33D4118E929290062CC1A /* euchretest.c in Sources */ = {isa = PBXBuildFile; fileRef = 20D33D4018E929290062CC1A /* euchretest.c */; };
+		20D33D4418E92AF50062CC1A /* ai.c in Sources */ = {isa = PBXBuildFile; fileRef = 20D33D4318E92AF50062CC1A /* ai.c */; };
+		20D33D4518E92DC30062CC1A /* shuffle.c in Sources */ = {isa = PBXBuildFile; fileRef = 20D33D3518E5BCAA0062CC1A /* shuffle.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +33,16 @@
 		20D33D2918E547BB0062CC1A /* Euchre */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Euchre; sourceTree = BUILT_PRODUCTS_DIR; };
 		20D33D2C18E547BB0062CC1A /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		20D33D2E18E547BB0062CC1A /* Euchre.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Euchre.1; sourceTree = "<group>"; };
+		20D33D3518E5BCAA0062CC1A /* shuffle.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = shuffle.c; sourceTree = "<group>"; };
+		20D33D3718E5C2890062CC1A /* shuffle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shuffle.h; sourceTree = "<group>"; };
+		20D33D3918E5C9DF0062CC1A /* card.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = card.h; path = ../card.h; sourceTree = "<group>"; };
+		20D33D3A18E5CA5E0062CC1A /* card.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = card.c; sourceTree = "<group>"; };
+		20D33D3C18E928FE0062CC1A /* euchre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = euchre.h; sourceTree = "<group>"; };
+		20D33D3D18E929180062CC1A /* euchretest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = euchretest.h; sourceTree = "<group>"; };
+		20D33D3E18E929200062CC1A /* euchre.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = euchre.c; sourceTree = "<group>"; };
+		20D33D4018E929290062CC1A /* euchretest.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = euchretest.c; sourceTree = "<group>"; };
+		20D33D4218E92AED0062CC1A /* ai.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ai.h; sourceTree = "<group>"; };
+		20D33D4318E92AF50062CC1A /* ai.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ai.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +63,7 @@
 				20D33D2A18E547BB0062CC1A /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		20D33D2A18E547BB0062CC1A /* Products */ = {
 			isa = PBXGroup;
@@ -60,7 +76,17 @@
 		20D33D2B18E547BB0062CC1A /* Euchre */ = {
 			isa = PBXGroup;
 			children = (
+				20D33D3918E5C9DF0062CC1A /* card.h */,
+				20D33D3A18E5CA5E0062CC1A /* card.c */,
 				20D33D2C18E547BB0062CC1A /* main.c */,
+				20D33D3C18E928FE0062CC1A /* euchre.h */,
+				20D33D3E18E929200062CC1A /* euchre.c */,
+				20D33D4218E92AED0062CC1A /* ai.h */,
+				20D33D4318E92AF50062CC1A /* ai.c */,
+				20D33D3D18E929180062CC1A /* euchretest.h */,
+				20D33D4018E929290062CC1A /* euchretest.c */,
+				20D33D3718E5C2890062CC1A /* shuffle.h */,
+				20D33D3518E5BCAA0062CC1A /* shuffle.c */,
 				20D33D2E18E547BB0062CC1A /* Euchre.1 */,
 			);
 			path = Euchre;
@@ -92,7 +118,7 @@
 		20D33D2118E547BA0062CC1A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = TimmyJ_NET;
 			};
 			buildConfigurationList = 20D33D2418E547BA0062CC1A /* Build configuration list for PBXProject "Euchre" */;
@@ -117,7 +143,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20D33D3F18E929200062CC1A /* euchre.c in Sources */,
+				20D33D4518E92DC30062CC1A /* shuffle.c in Sources */,
+				20D33D4118E929290062CC1A /* euchretest.c in Sources */,
 				20D33D2D18E547BB0062CC1A /* main.c in Sources */,
+				20D33D3B18E5CA5E0062CC1A /* card.c in Sources */,
+				20D33D4418E92AF50062CC1A /* ai.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,6 +172,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -156,7 +188,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -189,7 +221,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -227,6 +259,7 @@
 				20D33D3418E547BB0062CC1A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

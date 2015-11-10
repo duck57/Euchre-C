@@ -7,12 +7,16 @@
 //
 
 #include <stdio.h>
+#include <string.h>
+#include "euchre.h"
+#include "euchretest.h"
 
-int main(int argc, const char * argv[])
-{
 
-    // insert code here...
-    printf("Hello, World!\n");
+
+
+int main(int argc, const char * argv[]) {
+    play_euchre();
+    //test_euchre();
+    
     return 0;
 }
-
