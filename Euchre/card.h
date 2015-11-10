@@ -39,5 +39,8 @@ void show_card(card_t card);
 void show_card_full(card_t card);
 
 int card_random();
+card_t blank_card();
+void sort_hand(card_t hand[], int numberOfCards);
+int follow_suit(const card_t card, const suit_t checkSuit);
 
 #endif

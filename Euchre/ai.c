@@ -9,38 +9,86 @@
 #include <stdio.h>
 #include "ai.h"
 
-int random_bet();
-int random_trump();
 
-int human_bet() {
-    return computer_bet(); //replace this with actual menu drivers
-}
-int computer_bet() {
-	int trumpTest[6];
+int choose_bet(player_t player) {
 	for (int i=0; i<6; i++) {
-		trumpTest[i]=2; // assume 2 tricks from your partner
+		player.bidList[i]=2; // count on 2 tricks from your partner
 	}
-	
+	for (int i = 0; i < 12; i++) {
+		switch (player.hand[i].rank) {
+			case NINE:
+				player.bidList[0] += 1;
+				break;
+			case TEN:
+				player.bidList[0] += 1;
+				break;
+			case ACE:
+				player.bidList[5] += 1;
+				switch (player.hand[i].colour) {
+					case CLUBS:
+						player.bidList[1]++;
+						break;
+					case DIAMONDS:
+						player.bidList[2]++;
+						break;
+					case SPADES:
+						player.bidList[3]++;
+						break;
+					case HEARTS:
+						player.bidList[4]++;
+						break;
+						
+					default:
+						printf("Error in suit");
+						break;
+				}
+				break;
+			case KING:
+				player.bidList[5] += 2;
+				break;
+			case JACK:
+				switch (player.hand[i].colour) {
+					case CLUBS:
+						player.bidList[1] += 5;
+						player.bidList[3] += 2;
+						break;
+					case DIAMONDS:
+						player.bidList[2] += 5;
+						player.bidList[4] += 2;
+						break;
+					case SPADES:
+						player.bidList[3] += 5;
+						player.bidList[1] += 2;
+						break;
+					case HEARTS:
+						player.bidList[4] += 5;
+						player.bidList[2] += 2;
+						break;
+						
+					default:
+						printf("Error in suit");
+						break;
+				}
+				break;
+			default:
+				//printf("Error in value");
+				break;
+		}
+	}
 	return 0;
 }
 
-int get_card(player_t human, card_t trick[]) {
-    //get person to pick card's index to play and remove it
-    return 0;
-    //return choose_card(human, trick);
-}
-
-int choose_card(player_t computer, card_t trick[4], int tricksPlayed) {
+int choose_card(player_t computer) {
     //make dummy AI
-    
+	
     //choose a card valid to play (follow suit)
     //do not beat partner
     //play trump if not won
     //play low card
     //show_hand(computer);
     while (1) {
-        int loc = (((float)arc4random()/0x100000000)*(12-tricksPlayed));
-        if (is_valid_card(computer.hand, computer.hand[loc], trick)) {
+        int loc = (((float)arc4random()/0x100000000)*(12-trickNumber));
+        if (is_valid_card(computer.hand, computer.hand[loc])) {
             //printf("%s plays (position %d) ", computer.name, loc);
             //show_card(computer.hand[loc]);
             return loc;
@@ -48,111 +96,16 @@ int choose_card(player_t computer, card_t trick[4], int tricksPlayed) {
         //show_card(computer.hand[loc]);
     }
     printf("\n");
-    
+	
     return 0;
 }
 
-int random_bet() {
-    return card_random();
-}
-
-int is_valid_card(card_t hand[], card_t test, card_t trick[4]) {
-	// Don't play blank spaces
-    if (test.colour == BLANK || test.rank == NONE)
-        return 0;
-	// Any card is good if it's your lead
-    if (trick[0].colour == BLANK || trick[0].rank == NONE)
-        return 1;
-    if (test.colour == trick[0].colour || test.colour == TRUMP)
-        return 1;
-	// Checks that you don't have any cards matching the suit of the first card
-    for (int i = 0; i < 12; i++) {
-        if (hand[i].colour == trick[0].colour)
-            return 0;
-    }
-    // If everything else checks out…
-    return 1;
-}
-
-int get_trump(player_t hLead) {
-    return choose_trump(hLead);
-}
-
-int choose_trump(player_t cLead) {
-    for (int i = 0; i < 12; i++) {
-        switch (cLead.hand[i].rank) {
-            case NINE:
-                cLead.bidList[0] += 1;
-                break;
-            case TEN:
-                cLead.bidList[0] += 1;
-                break;
-            case ACE:
-                cLead.bidList[5] += 1;
-                switch (cLead.hand[i].colour) {
-                    case CLUBS:
-                        cLead.bidList[1]++;
-                        break;
-                    case DIAMONDS:
-                        cLead.bidList[2]++;
-                        break;
-                    case SPADES:
-                        cLead.bidList[3]++;
-                        break;
-                    case HEARTS:
-                        cLead.bidList[4]++;
-                        break;
-                        
-                    default:
-                        printf("Error in suit");
-                        break;
-                }
-                break;
-            case KING:
-                cLead.bidList[5] += 2;
-                break;
-            case JACK:
-                switch (cLead.hand[i].colour) {
-                    case CLUBS:
-                        cLead.bidList[1] += 5;
-                        cLead.bidList[3] += 2;
-                        break;
-                    case DIAMONDS:
-                        cLead.bidList[2] += 5;
-                        cLead.bidList[4] += 2;
-                        break;
-                    case SPADES:
-                        cLead.bidList[3] += 5;
-                        cLead.bidList[1] += 2;
-                        break;
-                    case HEARTS:
-                        cLead.bidList[4] += 5;
-                        cLead.bidList[2] += 2;
-                        break;
-                        
-                    default:
-                        printf("Error in suit");
-                        break;
-                }
-                break;
-                
-            default:
-                //printf("Error in value");
-                break;
-        }
-    }
+int choose_trump(player_t player) {
     int max = 0;
     for (int i = 0; i < 6; i++) {
-        if (cLead.bidList[i] > cLead.bidList[max]) {
+        if (player.bidList[i] > player.bidList[max]) {
             max = i;
         }
     }
     return max;
-}
-
-int random_trump() {
-    int trump = (int)(((float)arc4random()/0x100000000)*6);
-    make_euchre_trump(trump);
-    printf("Trump is %s\n\n", display_suit((suit_t)trump));
-    return trump;
 }

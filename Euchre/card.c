@@ -267,7 +267,16 @@ void make_trump(card_t card) {
     card.colour = TRUMP;
 }
 
-int card_random() {
+void sort_hand(card_t hand[], int numberOfCards) {
+	int cardSize = sizeof(card_t);
+	qsort(hand, numberOfCards, cardSize, compare_card);
+}
+
+card_t blank_card() {
+	return make_card(BLANK, NONE);
+}
+
+int random_euchre_bet() {
     int r = (((float)arc4random()/0x100000000)*999);
     if (r < 585)
         return 0;

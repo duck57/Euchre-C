@@ -7,3 +7,20 @@
 //
 
 #include "humanIO.h"
+#include "ai.h"
+
+int get_bet(player_t human) {
+	return choose_bet(human); //replace this with actual menu drivers
+}
+
+int get_card(player_t human) {
+	return choose_card(human); //temporary redirect until later
+}
+
+void set_options() {
+	
+}
+
+int get_trump(player_t human) {
+	return choose_trump(human); //temporary redirect until later
+}

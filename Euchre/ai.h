@@ -9,15 +9,11 @@
 #ifndef Euchre_ai_h
 #define Euchre_ai_h
 
-#include "card.h"
 #include "euchre.h"
 
-int get_card(player_t human, card_t trick[]);
-int choose_card(player_t computer, card_t trick[], int tricksPlayed);
-int human_bet();
-int computer_bet();
-int is_valid_card(card_t hand[], card_t test, card_t trick[]);
-int get_trump(player_t hLead);
-int choose_trump(player_t cLead);
+
+int choose_card(player_t computer);
+int choose_bet(player_t computer);
+int choose_trump(player_t computer);
 
 #endif
