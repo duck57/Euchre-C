@@ -34,8 +34,7 @@ int scoreNS;
 int scoreEW;
 int betNS;
 int betEW;
-int LoNo = 0;
-int victoryScore = 50;
+int LoNo;
 
 
 // Function declarations

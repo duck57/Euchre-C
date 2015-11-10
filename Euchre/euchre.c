@@ -13,9 +13,10 @@
 #include "DeckOperations.h"
 #include "initZero.h"
 
-// Mercy rule criteria
+// Game Over Criteria
 int maxPointsLost = 50;
 int allLoseCondition = -25;
+int victoryScore = 50;
 
 // Default player names
 char *NORTH = "NORTH";
