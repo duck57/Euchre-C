@@ -10,48 +10,44 @@
 #define Euchre_euchre_h
 
 #include <string.h>
-#include "shuffle.h"
 #include "card.h"
 
 typedef struct player_t {
     card_t hand[12];
-    char *name;
-    int isHuman;
-    int tricks;
-    int bet;
-    int bidList[6];
+    char *name; // Player name
+    int AI; // AI strength of 0 == human player, see ai.c for more details
+    int tricks; // how many tricks you took
+    int bet; // your bet
+    int bidList[7]; // used for AI bidding, see ai.c for more details
 } player_t;
 
-
+// Some shared assets
 player_t playerList[4];
 card_t euchreDeck[48];
-//card_t trick[4];
+card_t trick[4];
+card_t discard[48]; // used for advanced AI
+int trickNumber;
+
+/*	Common-knowledge variables are declared here to prevent excessive parameterization
+	If it's not intended to me at all malleable, it's declared in euchre.c */
+int scoreNS;
+int scoreEW;
+int betNS;
+int betEW;
+int LoNo;
 
 
-
-void deal();
-int score_in_range();
-void sort(card_t hand[]);
-void clear_hand();
-
-void shuffle_deck();
-void make_euchre_deck(card_t euchreDeck[]);
-void make_double_euchre_deck(card_t euchreDeck[]);
-
-void show_hand(player_t player);
-void show_stats(int player);
-
-void zero_players();
-void init_players();
-
+// Function declarations
 void play_euchre();
 void play_hand(int dealer);
-int play_trick(int lead, int trump, int missing);
-void play_card(int player, int cardLoc, int lead, card_t trick[]);
-
 int get_bets(int dealer);
-int make_euchre_trump(int trump);
 int stick_dealer(int dealer);
+int play_trick(int lead, int trump);
+
+int make_euchre_trump(int trump);
+int is_valid_card(card_t hand[], card_t test);
+int score_in_range();
+void set_bets(int winningPlayerLoc, int winningBet);
 
 
 #endif

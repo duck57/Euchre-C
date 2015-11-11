@@ -21,7 +21,7 @@ typedef struct card_t {
 
 card_t make_card(suit_t suit, value_t value);
 int compare_card(const void *a, const void *b);
-int compare_card_c(const card_t a, const card_t b);
+int compare_card_c(const card_t a, const card_t b, int trumpGame, int lowWin);
 void make_trump(card_t card);
 card_t cast_card(const void *a);
 int compare_suit(card_t a, card_t b);
@@ -39,5 +39,8 @@ void show_card(card_t card);
 void show_card_full(card_t card);
 
 int card_random();
+card_t blank_card();
+void sort_hand(card_t hand[], int numberOfCards);
+int follow_suit(const card_t card, const suit_t checkSuit);
 
 #endif

@@ -34,27 +34,43 @@ char *display_card_full(card_t card) {
     return temp;
 }
 
+// Use this comparison for sort operators to group cards by suit in your hand
 int compare_card(const void *a, const void *b) {
     card_t ad = *(card_t*)a;
     card_t bd = *(card_t*)b;
-    
-    int s = ad.colour - bd.colour;
+	int s = ad.colour - bd.colour;
     int r = ad.rank - bd.rank;
-    
-    if (s != 0)
-        return s;
-    else
+    if (s == 0)
         return r;
+    else
+        return s;
+	return 420;
 }
 
-int compare_card_c(const card_t a, const card_t b) {
-    int s = a.colour - b.colour;
+/* returns the difference (card a - card b)
+	positive values mean card a won; b wins if this returns a negative value */
+int compare_card_c(const card_t a, const card_t b, int trumpGame, int LoWin) {
+	int s = 0;
+	if (trumpGame)
+		s = a.colour - b.colour; // compare suit first for trump-based games
     int r = a.rank - b.rank;
-    
-    if (s != 0)
-        return s;
-    else
+	if (LoWin)
+		r = -r;
+    if (s == 0)
         return r;
+    else
+        return s;
+	return -420; // this should never happen
+}
+
+/*	Returns if a card is following a certain suit
+	Trump is assumed to follow suit at all times*/
+int follow_suit(const card_t card, const suit_t checkSuit) {
+	if (card.colour == checkSuit || card.colour == TRUMP)
+		return 1;
+	else
+		return 0;
+	return 899;
 }
 
 int compare_suit(const card_t a, const card_t b) {
@@ -76,7 +92,7 @@ char *show_rank(value_t value) {
             return " ";
             break;
         case DEUCE:
-            return "1";
+            return "𝟚";
             break;
         case TWO:
             return "2";
@@ -103,7 +119,7 @@ char *show_rank(value_t value) {
             return "9";
             break;
         case TEN:
-            return "T";
+            return "🔟";
             break;
         case JACK:
             return "J";
@@ -118,10 +134,10 @@ char *show_rank(value_t value) {
             return "A";
             break;
         case LEFT:
-            return "L";
+            return "◀";
             break;
         case RIGHT:
-            return "R";
+            return "▶";
             break;
             
         default:
@@ -132,29 +148,29 @@ char *show_rank(value_t value) {
 char *show_suit(suit_t colour) {
     switch (colour) {
         case JOKER:
-            return "j";
+            return "🃏";
             break;
         case HEARTS:
-            return "H";
+            return "♥";
             break;
         case SPADES:
-            return "S";
+            return "♠";
             break;
         case DIAMONDS:
-            return "D";
+            return "♦︎";
             break;
         case CLUBS:
-            return "C";
+            return "♣︎";
             break;
         case TRUMP:
-            return "T";
+            return "✯";
             break;
         case BLANK:
             return " ";
             break;
             
         default:
-            return "e";
+            return "❂";
             break;
     }
 }
@@ -251,7 +267,16 @@ void make_trump(card_t card) {
     card.colour = TRUMP;
 }
 
-int card_random() {
+void sort_hand(card_t hand[], int numberOfCards) {
+	int cardSize = sizeof(card_t);
+	qsort(hand, numberOfCards, cardSize, compare_card);
+}
+
+card_t blank_card() {
+	return make_card(BLANK, NONE);
+}
+
+int random_euchre_bet() {
     int r = (((float)arc4random()/0x100000000)*999);
     if (r < 585)
         return 0;

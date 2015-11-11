@@ -7,16 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		201CE0411BF1A22A00B723B8 /* humanIO.c in Sources */ = {isa = PBXBuildFile; fileRef = 201CE03F1BF1A22A00B723B8 /* humanIO.c */; };
+		203E08BC1BF1CA990072565F /* IOsplitter.c in Sources */ = {isa = PBXBuildFile; fileRef = 203E08BA1BF1CA990072565F /* IOsplitter.c */; };
+		203E08BF1BF1E19D0072565F /* initZero.c in Sources */ = {isa = PBXBuildFile; fileRef = 203E08BD1BF1E19D0072565F /* initZero.c */; };
+		203E08C21BF1E3AB0072565F /* DeckOperations.c in Sources */ = {isa = PBXBuildFile; fileRef = 203E08C01BF1E3AB0072565F /* DeckOperations.c */; };
+		203E08C51BF1E4510072565F /* scoring.c in Sources */ = {isa = PBXBuildFile; fileRef = 203E08C31BF1E4510072565F /* scoring.c */; };
 		20D33D2D18E547BB0062CC1A /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 20D33D2C18E547BB0062CC1A /* main.c */; settings = {COMPILER_FLAGS = "-o euchre"; }; };
 		20D33D2F18E547BB0062CC1A /* Euchre.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 20D33D2E18E547BB0062CC1A /* Euchre.1 */; };
 		20D33D3B18E5CA5E0062CC1A /* card.c in Sources */ = {isa = PBXBuildFile; fileRef = 20D33D3A18E5CA5E0062CC1A /* card.c */; };
 		20D33D3F18E929200062CC1A /* euchre.c in Sources */ = {isa = PBXBuildFile; fileRef = 20D33D3E18E929200062CC1A /* euchre.c */; };
-		20D33D4118E929290062CC1A /* euchretest.c in Sources */ = {isa = PBXBuildFile; fileRef = 20D33D4018E929290062CC1A /* euchretest.c */; };
 		20D33D4418E92AF50062CC1A /* ai.c in Sources */ = {isa = PBXBuildFile; fileRef = 20D33D4318E92AF50062CC1A /* ai.c */; };
 		20D33D4518E92DC30062CC1A /* shuffle.c in Sources */ = {isa = PBXBuildFile; fileRef = 20D33D3518E5BCAA0062CC1A /* shuffle.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		203E08C81BF1F9140072565F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		20D33D2718E547BA0062CC1A /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -30,22 +43,38 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		201CE03F1BF1A22A00B723B8 /* humanIO.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = humanIO.c; path = Euchre/humanIO.c; sourceTree = "<group>"; };
+		201CE0401BF1A22A00B723B8 /* humanIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = humanIO.h; path = Euchre/humanIO.h; sourceTree = "<group>"; };
+		203E08BA1BF1CA990072565F /* IOsplitter.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = IOsplitter.c; path = Euchre/IOsplitter.c; sourceTree = "<group>"; };
+		203E08BB1BF1CA990072565F /* IOsplitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOsplitter.h; path = Euchre/IOsplitter.h; sourceTree = "<group>"; };
+		203E08BD1BF1E19D0072565F /* initZero.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = initZero.c; sourceTree = "<group>"; };
+		203E08BE1BF1E19D0072565F /* initZero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = initZero.h; sourceTree = "<group>"; };
+		203E08C01BF1E3AB0072565F /* DeckOperations.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = DeckOperations.c; sourceTree = "<group>"; };
+		203E08C11BF1E3AB0072565F /* DeckOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeckOperations.h; sourceTree = "<group>"; };
+		203E08C31BF1E4510072565F /* scoring.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = scoring.c; sourceTree = "<group>"; };
+		203E08C41BF1E4510072565F /* scoring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scoring.h; sourceTree = "<group>"; };
+		203E08CA1BF1F9140072565F /* test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = test; sourceTree = BUILT_PRODUCTS_DIR; };
 		20D33D2918E547BB0062CC1A /* Euchre */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Euchre; sourceTree = BUILT_PRODUCTS_DIR; };
-		20D33D2C18E547BB0062CC1A /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
-		20D33D2E18E547BB0062CC1A /* Euchre.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Euchre.1; sourceTree = "<group>"; };
+		20D33D2C18E547BB0062CC1A /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = main.c; path = Euchre/main.c; sourceTree = "<group>"; };
+		20D33D2E18E547BB0062CC1A /* Euchre.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; name = Euchre.1; path = Euchre/Euchre.1; sourceTree = "<group>"; };
 		20D33D3518E5BCAA0062CC1A /* shuffle.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = shuffle.c; sourceTree = "<group>"; };
 		20D33D3718E5C2890062CC1A /* shuffle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shuffle.h; sourceTree = "<group>"; };
-		20D33D3918E5C9DF0062CC1A /* card.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = card.h; path = ../card.h; sourceTree = "<group>"; };
+		20D33D3918E5C9DF0062CC1A /* card.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = card.h; sourceTree = "<group>"; };
 		20D33D3A18E5CA5E0062CC1A /* card.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = card.c; sourceTree = "<group>"; };
 		20D33D3C18E928FE0062CC1A /* euchre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = euchre.h; sourceTree = "<group>"; };
-		20D33D3D18E929180062CC1A /* euchretest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = euchretest.h; sourceTree = "<group>"; };
 		20D33D3E18E929200062CC1A /* euchre.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = euchre.c; sourceTree = "<group>"; };
-		20D33D4018E929290062CC1A /* euchretest.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = euchretest.c; sourceTree = "<group>"; };
-		20D33D4218E92AED0062CC1A /* ai.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ai.h; sourceTree = "<group>"; };
-		20D33D4318E92AF50062CC1A /* ai.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ai.c; sourceTree = "<group>"; };
+		20D33D4218E92AED0062CC1A /* ai.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ai.h; path = Euchre/ai.h; sourceTree = "<group>"; };
+		20D33D4318E92AF50062CC1A /* ai.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ai.c; path = Euchre/ai.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		203E08C71BF1F9140072565F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		20D33D2618E547BA0062CC1A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -56,10 +85,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		203E08B91BF1A3390072565F /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				20D33D4318E92AF50062CC1A /* ai.c */,
+				20D33D4218E92AED0062CC1A /* ai.h */,
+				201CE03F1BF1A22A00B723B8 /* humanIO.c */,
+				201CE0401BF1A22A00B723B8 /* humanIO.h */,
+				203E08BA1BF1CA990072565F /* IOsplitter.c */,
+				203E08BB1BF1CA990072565F /* IOsplitter.h */,
+			);
+			name = Controls;
+			sourceTree = "<group>";
+		};
 		20D33D2018E547BA0062CC1A = {
 			isa = PBXGroup;
 			children = (
-				20D33D2B18E547BB0062CC1A /* Euchre */,
+				203E08B91BF1A3390072565F /* Controls */,
+				20D33D2E18E547BB0062CC1A /* Euchre.1 */,
+				20D33D2B18E547BB0062CC1A /* EuchreCore */,
+				20D33D2C18E547BB0062CC1A /* main.c */,
 				20D33D2A18E547BB0062CC1A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -69,32 +114,51 @@
 			isa = PBXGroup;
 			children = (
 				20D33D2918E547BB0062CC1A /* Euchre */,
+				203E08CA1BF1F9140072565F /* test */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		20D33D2B18E547BB0062CC1A /* Euchre */ = {
+		20D33D2B18E547BB0062CC1A /* EuchreCore */ = {
 			isa = PBXGroup;
 			children = (
-				20D33D3918E5C9DF0062CC1A /* card.h */,
 				20D33D3A18E5CA5E0062CC1A /* card.c */,
-				20D33D2C18E547BB0062CC1A /* main.c */,
-				20D33D3C18E928FE0062CC1A /* euchre.h */,
+				20D33D3918E5C9DF0062CC1A /* card.h */,
+				203E08C01BF1E3AB0072565F /* DeckOperations.c */,
+				203E08C11BF1E3AB0072565F /* DeckOperations.h */,
 				20D33D3E18E929200062CC1A /* euchre.c */,
-				20D33D4218E92AED0062CC1A /* ai.h */,
-				20D33D4318E92AF50062CC1A /* ai.c */,
-				20D33D3D18E929180062CC1A /* euchretest.h */,
-				20D33D4018E929290062CC1A /* euchretest.c */,
-				20D33D3718E5C2890062CC1A /* shuffle.h */,
+				20D33D3C18E928FE0062CC1A /* euchre.h */,
+				203E08BD1BF1E19D0072565F /* initZero.c */,
+				203E08BE1BF1E19D0072565F /* initZero.h */,
+				203E08C31BF1E4510072565F /* scoring.c */,
+				203E08C41BF1E4510072565F /* scoring.h */,
 				20D33D3518E5BCAA0062CC1A /* shuffle.c */,
-				20D33D2E18E547BB0062CC1A /* Euchre.1 */,
+				20D33D3718E5C2890062CC1A /* shuffle.h */,
 			);
+			name = EuchreCore;
 			path = Euchre;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		203E08C91BF1F9140072565F /* test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 203E08CE1BF1F9140072565F /* Build configuration list for PBXNativeTarget "test" */;
+			buildPhases = (
+				203E08C61BF1F9140072565F /* Sources */,
+				203E08C71BF1F9140072565F /* Frameworks */,
+				203E08C81BF1F9140072565F /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = test;
+			productName = test;
+			productReference = 203E08CA1BF1F9140072565F /* test */;
+			productType = "com.apple.product-type.tool";
+		};
 		20D33D2818E547BA0062CC1A /* Euchre */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 20D33D3218E547BB0062CC1A /* Build configuration list for PBXNativeTarget "Euchre" */;
@@ -120,6 +184,11 @@
 			attributes = {
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = TimmyJ_NET;
+				TargetAttributes = {
+					203E08C91BF1F9140072565F = {
+						CreatedOnToolsVersion = 7.1;
+					};
+				};
 			};
 			buildConfigurationList = 20D33D2418E547BA0062CC1A /* Build configuration list for PBXProject "Euchre" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -134,27 +203,65 @@
 			projectRoot = "";
 			targets = (
 				20D33D2818E547BA0062CC1A /* Euchre */,
+				203E08C91BF1F9140072565F /* test */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		203E08C61BF1F9140072565F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		20D33D2518E547BA0062CC1A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				20D33D3F18E929200062CC1A /* euchre.c in Sources */,
+				203E08C51BF1E4510072565F /* scoring.c in Sources */,
 				20D33D4518E92DC30062CC1A /* shuffle.c in Sources */,
-				20D33D4118E929290062CC1A /* euchretest.c in Sources */,
+				201CE0411BF1A22A00B723B8 /* humanIO.c in Sources */,
+				203E08BC1BF1CA990072565F /* IOsplitter.c in Sources */,
+				203E08C21BF1E3AB0072565F /* DeckOperations.c in Sources */,
 				20D33D2D18E547BB0062CC1A /* main.c in Sources */,
 				20D33D3B18E5CA5E0062CC1A /* card.c in Sources */,
 				20D33D4418E92AF50062CC1A /* ai.c in Sources */,
+				203E08BF1BF1E19D0072565F /* initZero.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		203E08CF1BF1F9140072565F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "-";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		203E08D01BF1F9140072565F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		20D33D3018E547BB0062CC1A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -243,6 +350,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		203E08CE1BF1F9140072565F /* Build configuration list for PBXNativeTarget "test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				203E08CF1BF1F9140072565F /* Debug */,
+				203E08D01BF1F9140072565F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		20D33D2418E547BA0062CC1A /* Build configuration list for PBXProject "Euchre" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
