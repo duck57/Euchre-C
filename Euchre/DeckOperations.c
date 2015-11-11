@@ -20,6 +20,7 @@ void deal() {
 		}
 		sort_hand(playerList[i].hand,12);
 		playerList[i].tricks = 0;
+		generate_bid_list(playerList[i],i);
 	}
 }
 

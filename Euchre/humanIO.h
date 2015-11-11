@@ -15,7 +15,7 @@
 
 #endif /* humanIO_h */
 
-int get_bet();
+int get_bet(player_t human, int currentHibet);
 int get_card(player_t human);
 void set_options();
 int get_trump(player_t human);

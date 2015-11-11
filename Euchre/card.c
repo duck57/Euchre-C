@@ -92,7 +92,7 @@ char *show_rank(value_t value) {
             return " ";
             break;
         case DEUCE:
-            return "1";
+            return "𝟚";
             break;
         case TWO:
             return "2";
@@ -119,7 +119,7 @@ char *show_rank(value_t value) {
             return "9";
             break;
         case TEN:
-            return "T";
+            return "🔟";
             break;
         case JACK:
             return "J";
@@ -134,10 +134,10 @@ char *show_rank(value_t value) {
             return "A";
             break;
         case LEFT:
-            return "L";
+            return "◀";
             break;
         case RIGHT:
-            return "R";
+            return "▶";
             break;
             
         default:
@@ -148,29 +148,29 @@ char *show_rank(value_t value) {
 char *show_suit(suit_t colour) {
     switch (colour) {
         case JOKER:
-            return "j";
+            return "🃏";
             break;
         case HEARTS:
-            return "H";
+            return "♥";
             break;
         case SPADES:
-            return "S";
+            return "♠";
             break;
         case DIAMONDS:
-            return "D";
+            return "♦︎";
             break;
         case CLUBS:
-            return "C";
+            return "♣︎";
             break;
         case TRUMP:
-            return "T";
+            return "✯";
             break;
         case BLANK:
             return " ";
             break;
             
         default:
-            return "e";
+            return "❂";
             break;
     }
 }

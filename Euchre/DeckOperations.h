@@ -13,6 +13,7 @@
 #include "card.h"
 #include "euchre.h"
 #include "shuffle.h"
+#include "ai.h"
 
 #endif /* DeckOperations_h */
 

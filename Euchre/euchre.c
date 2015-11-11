@@ -24,6 +24,8 @@ char *SOUTH = "SOUTH";
 char *EAST = "EAST";
 char *WEST = "WEST";
 
+int ls;
+
 void play_euchre() {
     printf("Welcome to double-deck euchre!\n\n");
     init_players();
@@ -34,7 +36,7 @@ void play_euchre() {
         dealer = (dealer+1)%4;
     }
     if (scoreNS < -25 && scoreEW < -25) {
-        printf("You both lose.\n");
+        printf("\n\nYou both lose.\n\n");
     } else {
         if (scoreNS > scoreEW) {
             printf("\n\n%s and %s win %d to %d!\n", playerList[1].name, playerList[3].name, scoreNS, scoreEW);
@@ -75,6 +77,7 @@ int score_in_range() {
 void play_hand(int dealer) {
     deal();
     printf("Dealer: %s\t\tScores: NS %d\tEW %d\n", playerList[dealer].name, scoreNS, scoreEW);
+	ls=0;
 	
 	//betting and trump selection
     int lead = get_bets(dealer);
@@ -88,7 +91,7 @@ void play_hand(int dealer) {
     } else {
         trumpDisp = display_suit((suit_t) trump);
     }
-    printf("%s.\n", trumpDisp); //print trump; lead-in text should be handled in get_bets()
+    printf("%s (%d).\n", trumpDisp, trump); //print trump; lead-in text should be handled in get_bets()
 	
 	// actually play the round
 	for (trickNumber=0; trickNumber<12; trickNumber++) {
@@ -121,31 +124,40 @@ int play_trick(int lead, int trump) {
 }
 
 int get_bets(int dealer) {
-    int bet = 0;
+    int currentHighbet = 0;
     betEW = 0;
     betNS = 0;
     int where = (dealer + 1)%4;
     for (int i = dealer+1; i < dealer+5; i++) {
-        int betty = 0;
-        if ((i-dealer)%4 == 0 && bet < 6)
+        int playerBet = 0;
+        if ((i-dealer)%4 == 0 && currentHighbet < 6)
             return stick_dealer(dealer);
-		pick_a_bet(playerList[i%4]);
-        if (betty > bet) {
-            bet = betty;
+		playerBet = pick_a_bet(playerList[i%4], currentHighbet);
+        if (playerBet > currentHighbet) {
+            currentHighbet = playerBet;
             where = i%4;
-            printf("%s bet %d\n", playerList[where].name, betty);
+            printf("%s bet %d\n", playerList[where].name, playerBet);
         } else {
             printf("%s passes\n", playerList[i%4].name);
         }
     }
-	if (where%2 == 0) {
-		betEW = bet;
-	} else {
-		betNS = bet;
-	}
-	printf("%s won a bet of %d and called ", playerList[where].name, bet); //trump listed later on
+	set_bets(where, currentHighbet);
 	return where;
-    return -1; // In case something goes horribly wrong
+}
+
+void set_bets(int winningPlayerLoc, int winningBet) {
+	printf("%s won a bet of %d and called ", playerList[winningPlayerLoc].name, winningBet); //trump listed later on
+	if (winningBet==20) {
+		ls=1;
+		winningBet=12;
+	} else if (winningBet==24) {
+		ls=2;
+		winningBet=12;
+	}
+	if (winningPlayerLoc%2 == 0)
+		betEW = winningBet;
+	else
+		betNS = winningBet;
 }
 
 

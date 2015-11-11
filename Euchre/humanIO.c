@@ -9,8 +9,8 @@
 #include "humanIO.h"
 #include "ai.h"
 
-int get_bet(player_t human) {
-	return choose_bet(human); //replace this with actual menu drivers
+int get_bet(player_t human, int currentHibet) {
+	return choose_bet(human, currentHibet); //replace this with actual menu drivers
 }
 
 int get_card(player_t human) {

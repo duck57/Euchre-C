@@ -12,7 +12,6 @@
 		203E08BF1BF1E19D0072565F /* initZero.c in Sources */ = {isa = PBXBuildFile; fileRef = 203E08BD1BF1E19D0072565F /* initZero.c */; };
 		203E08C21BF1E3AB0072565F /* DeckOperations.c in Sources */ = {isa = PBXBuildFile; fileRef = 203E08C01BF1E3AB0072565F /* DeckOperations.c */; };
 		203E08C51BF1E4510072565F /* scoring.c in Sources */ = {isa = PBXBuildFile; fileRef = 203E08C31BF1E4510072565F /* scoring.c */; };
-		203E08CD1BF1F9140072565F /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 203E08CC1BF1F9140072565F /* main.c */; };
 		20D33D2D18E547BB0062CC1A /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 20D33D2C18E547BB0062CC1A /* main.c */; settings = {COMPILER_FLAGS = "-o euchre"; }; };
 		20D33D2F18E547BB0062CC1A /* Euchre.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 20D33D2E18E547BB0062CC1A /* Euchre.1 */; };
 		20D33D3B18E5CA5E0062CC1A /* card.c in Sources */ = {isa = PBXBuildFile; fileRef = 20D33D3A18E5CA5E0062CC1A /* card.c */; };
@@ -55,7 +54,6 @@
 		203E08C31BF1E4510072565F /* scoring.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = scoring.c; sourceTree = "<group>"; };
 		203E08C41BF1E4510072565F /* scoring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scoring.h; sourceTree = "<group>"; };
 		203E08CA1BF1F9140072565F /* test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = test; sourceTree = BUILT_PRODUCTS_DIR; };
-		203E08CC1BF1F9140072565F /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		20D33D2918E547BB0062CC1A /* Euchre */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Euchre; sourceTree = BUILT_PRODUCTS_DIR; };
 		20D33D2C18E547BB0062CC1A /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = main.c; path = Euchre/main.c; sourceTree = "<group>"; };
 		20D33D2E18E547BB0062CC1A /* Euchre.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; name = Euchre.1; path = Euchre/Euchre.1; sourceTree = "<group>"; };
@@ -100,14 +98,6 @@
 			name = Controls;
 			sourceTree = "<group>";
 		};
-		203E08CB1BF1F9140072565F /* test */ = {
-			isa = PBXGroup;
-			children = (
-				203E08CC1BF1F9140072565F /* main.c */,
-			);
-			path = test;
-			sourceTree = "<group>";
-		};
 		20D33D2018E547BA0062CC1A = {
 			isa = PBXGroup;
 			children = (
@@ -115,7 +105,6 @@
 				20D33D2E18E547BB0062CC1A /* Euchre.1 */,
 				20D33D2B18E547BB0062CC1A /* EuchreCore */,
 				20D33D2C18E547BB0062CC1A /* main.c */,
-				203E08CB1BF1F9140072565F /* test */,
 				20D33D2A18E547BB0062CC1A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -224,7 +213,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				203E08CD1BF1F9140072565F /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

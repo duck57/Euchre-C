@@ -15,10 +15,10 @@
 typedef struct player_t {
     card_t hand[12];
     char *name; // Player name
-    int AI; // AI strength of 0 == human player
+    int AI; // AI strength of 0 == human player, see ai.c for more details
     int tricks; // how many tricks you took
     int bet; // your bet
-    int bidList[6]; // used for AI bidding
+    int bidList[7]; // used for AI bidding, see ai.c for more details
 } player_t;
 
 // Some shared assets
@@ -47,6 +47,7 @@ int play_trick(int lead, int trump);
 int make_euchre_trump(int trump);
 int is_valid_card(card_t hand[], card_t test);
 int score_in_range();
+void set_bets(int winningPlayerLoc, int winningBet);
 
 
 #endif

@@ -8,11 +8,11 @@
 
 #include "IOsplitter.h"
 
-int pick_a_bet(player_t player) {
+int pick_a_bet(player_t player, int currentHibet) {
 	if (player.AI)
-		return choose_bet(player);
+		return choose_bet(player, currentHibet);
 	else
-		return get_bet(player);
+		return get_bet(player, currentHibet);
 	return -5; // ERROR!
 }
 
