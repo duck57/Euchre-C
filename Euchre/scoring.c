@@ -12,7 +12,7 @@
 int score_trick() {
 	int bigCardLoc = 0;
 	for (int i=1; i<4; i++) {
-		if (compare_card_c(trick[i], trick[bigCardLoc], 1, LoNo) > 0 && follow_suit(trick[i],trick[0].colour))
+		if (follow_suit(trick[i],trick[0].colour) && (compare_card_c(trick[i], trick[bigCardLoc], 1, LoNo) > 0))
 			bigCardLoc = i;
 	}
 	return bigCardLoc;
@@ -36,5 +36,9 @@ void score_hand() {
 }
 
 void hand_score_update(player_t a, player_t b, int teamBet) {
-	printf("%s and %s made a bet of %d and got %d and %d tricks, respectively.\n", a.name, b.name, teamBet, a.tricks, b.tricks);
+	printf("%s and %s bet %d and ", a.name, b.name, teamBet);
+	if (a.tricks+b.tricks<teamBet)
+		printf("got euchre'd!\n(%d and %d tricks, respectively)\n\n", a.tricks, b.tricks);
+	else
+		printf("earned %d and %d tricks, respectively.\n\n", a.tricks, b.tricks);
 }

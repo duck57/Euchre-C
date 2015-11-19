@@ -43,4 +43,8 @@ card_t blank_card();
 void sort_hand(card_t hand[], int numberOfCards);
 int follow_suit(const card_t card, const suit_t checkSuit);
 
+void revert_card(card_t card, suit_t trumpSuit);
+void make_card_trump(card_t card, suit_t trump);
+
+
 #endif

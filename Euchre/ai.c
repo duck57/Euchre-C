@@ -14,9 +14,10 @@
  2 - Looks at hand when betting, keeps track of remaining cards when deciding what to play
  1 - Looks at hand when betting, plays the best card possible
  0 - Human: see humanIO.c
- -1 - random bid, trump, and play (valid card only)
- -2 - random bid & trump, plays lowest valid card
+ -1 - random bid, trump, and card (valid card only)
+ -2 - random bid & trump, plays best card
  -3 - random bid & trump, plays highest valid card
+ -4 - random bid, but selects the best trump and card
  */
 
 int partnerAssumed=0; // using the human rule-of-thumb has made the computer player way too aggressive
@@ -110,6 +111,8 @@ void generate_bid_list(player_t computer, int computer_location) {
 }
 
 int choose_bet(player_t computer, int currentHibet) {
+	if (computer.AI<0)
+		return random_euchre_bet();
 	int testBet = computer.bidList[computer.bidList[6]];
 	if (testBet>13)
 		return 24; // call a loner
@@ -139,27 +142,71 @@ void print_bids(player_t computer) {
 }
 
 int choose_card(player_t computer) {
-    //make dummy AI
-	
-    //choose a card valid to play (follow suit)
-    //do not beat partner
-    //play trump if not won
-    //play low card
-    //show_hand(computer);
-    while (1) {
-        int loc = (((float)arc4random()/0x100000000)*(12-trickNumber));
-        if (is_valid_card(computer.hand, computer.hand[loc])) {
-            //printf("%s plays (position %d) ", computer.name, loc);
-            //show_card(computer.hand[loc]);
-            return loc;
-        }
-        //show_card(computer.hand[loc]);
-    }
-    printf("\n");
-	
-    return 0;
+	int validCardAry[13];
+	sort_hand(computer.hand, 12-trickNumber);
+	get_valid_cards(computer.hand, validCardAry);
+	switch (computer.AI) {
+		case -1:
+			return play_random_card(computer);
+			break;
+		case -3:
+			return play_random_card(computer);
+			break;
+		default:
+			return play_random_card(computer);
+			break;
+	}
+	return -4;
+}
+
+void get_valid_cards(card_t hand[], int validCardAry[]) {
+	int count=0;
+	for (int i=0; i<12-trickNumber; i++) {
+		if (is_valid_card(hand, hand[i])) {
+			validCardAry[count]=i;
+			count++;
+		}
+	}
+}
+
+int play_random_card(player_t computer) {
+	while (1) {
+		int loc = random_int(12-trickNumber);
+		if (is_valid_card(computer.hand, computer.hand[loc]))
+			return loc;
+	}
+	return -25;
 }
 
 int choose_trump(player_t computer) {
-	return computer.bidList[6];
+	if (computer.AI>0||computer.AI==-4)
+		return computer.bidList[6];
+	return random_bidEuchre_trump();
+}
+
+int random_euchre_bet() {
+	int r = random_int(999);
+	if (r < 585)
+		return 0;
+	if (r < 864)
+		return 6;
+	if (r < 911)
+		return 7;
+	if (r < 941)
+		return 8;
+	if (r < 963)
+		return 9;
+	if (r < 984)
+		return 10;
+	if (r < 998)
+		return 11;
+	return 12;
+}
+
+int random_bidEuchre_trump() {
+	return random_int(6);
+}
+
+int random_int(int max) {
+	return  (((float)arc4random()/0x100000000)*max);
 }

@@ -14,6 +14,7 @@
 #include <string.h>
 
 void shuffle(void *array, size_t n, size_t size);
+int mod(int a, int b);
 
 #define NELEMS(x)  (sizeof(x) / sizeof(x[0]))
 #define foo4random() (arc4random() % ((unsigned)RAND_MAX + 1))

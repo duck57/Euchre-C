@@ -10,7 +10,7 @@
 #define initZero_h
 
 #include <stdio.h>
-#include "euchre.h"
+#include "table.h"
 
 #endif /* initZero_h */
 

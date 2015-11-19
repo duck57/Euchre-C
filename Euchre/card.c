@@ -276,21 +276,46 @@ card_t blank_card() {
 	return make_card(BLANK, NONE);
 }
 
-int random_euchre_bet() {
-    int r = (((float)arc4random()/0x100000000)*999);
-    if (r < 585)
-        return 0;
-    if (r < 864)
-        return 6;
-    if (r < 911)
-        return 7;
-    if (r < 941)
-        return 8;
-    if (r < 963)
-        return 9;
-    if (r < 984)
-        return 10;
-    if (r < 998)
-        return 11;
-    return 12;
+void revert_card(card_t card, suit_t trumpSuit) {
+	if (card.colour == TRUMP)
+		card.colour = trumpSuit;
+}
+
+void make_card_trump(card_t card, suit_t trump) {
+	if (card.colour == trump) {
+		card.colour = TRUMP;
+		if (card.rank == JACK)
+			card.rank = RIGHT;
+	} else if (card.rank == JACK) {
+		switch (trump) {
+			case 1:
+				if (card.colour == SPADES) {
+					card.colour = TRUMP;
+					card.rank = LEFT;
+				}
+				break;
+			case 2:
+				if (card.colour == HEARTS) {
+					card.colour = TRUMP;
+					card.rank = LEFT;
+				}
+				break;
+			case 3:
+				if (card.colour == CLUBS) {
+					card.colour = TRUMP;
+					card.rank = LEFT;
+				}
+				break;
+			case 4:
+				if (card.colour == DIAMONDS) {
+					card.colour = TRUMP;
+					card.rank = LEFT;
+				}
+				break;
+				
+			default:
+				
+				break;
+		}
+	}
 }
