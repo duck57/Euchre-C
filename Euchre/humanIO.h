@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include "euchre.h"
 #include "card.h"
+#include "table.h"
 
 #endif /* humanIO_h */
 
