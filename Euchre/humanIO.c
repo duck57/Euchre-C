@@ -8,6 +8,7 @@
 
 #include "humanIO.h"
 #include "ai.h"
+#include "help.h"
 
 int get_bet(player_t human, int currentHibet) {
 	return choose_bet(human, currentHibet); //replace this with actual menu drivers

@@ -9,27 +9,13 @@
 #include "IOsplitter.h"
 
 int pick_a_bet(player_t player, int currentHibet) {
-	if (player.AI)
-		return choose_bet(player, currentHibet);
-	else
-		return get_bet(player, currentHibet);
-	return -5; // ERROR!
+	return player.AI ? choose_bet(player, currentHibet) : get_bet(player, currentHibet);
 }
 
 int pick_a_trump(player_t lead) {
-	if (lead.AI)
-		return choose_trump(lead);
-	else
-		return get_trump(lead);
-	return -55; // error
+	return lead.AI ? choose_trump(lead) : get_trump(lead);
 }
 
 int pick_a_card(player_t player) {
-	if (player.AI) {
-		return choose_card(player);
-	} else {
-		//show_stats(i%4);
-		return get_card(player);
-	}
-	return -99; // error
+	return player.AI ? choose_card(player) : get_card(player);
 }

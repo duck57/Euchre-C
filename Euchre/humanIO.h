@@ -13,6 +13,7 @@
 #include "euchre.h"
 #include "card.h"
 #include "table.h"
+#include "menus.h"
 
 #endif /* humanIO_h */
 

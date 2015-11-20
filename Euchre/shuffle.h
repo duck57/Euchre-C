@@ -12,6 +12,7 @@
 #include <time.h>
 #include <stdlib.h>
 #include <string.h>
+#include "mathemagics.h"
 
 void shuffle(void *array, size_t n, size_t size);
 int mod(int a, int b);

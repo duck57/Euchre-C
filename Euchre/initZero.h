@@ -18,3 +18,4 @@ void init_players();
 void zero_players();
 void zero_trick();
 void zero_discard();
+void default_players();

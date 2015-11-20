@@ -179,9 +179,7 @@ int play_random_card(player_t computer) {
 }
 
 int choose_trump(player_t computer) {
-	if (computer.AI>0||computer.AI==-4)
-		return computer.bidList[6];
-	return random_bidEuchre_trump();
+	return (computer.AI>0||computer.AI==-4) ? computer.bidList[6] : random_bidEuchre_trump();
 }
 
 int random_euchre_bet() {

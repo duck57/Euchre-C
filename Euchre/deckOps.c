@@ -80,7 +80,6 @@ void show_stats(int player) {
 void play_card(int player, int cardLoc, int lead) {
 	int pos = mod(player-lead, 4);
 	card_t cardPlayed = playerList[player].hand[cardLoc];
-	show_card(cardPlayed); printf(" ");
 	trick[pos] = cardPlayed;
 	discard[trickNumber*4+pos] = cardPlayed;
 	for (int i = cardLoc; i < 11; i++) {

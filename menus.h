@@ -10,6 +10,16 @@
 #define menus_h
 
 #include <stdio.h>
-#include "table.h"
+#include <string.h>
+#include "initZero.h"
+#include "help.h"
+#include "mathemagics.h"
+
+void greet();
+void set_players();
+void setup_player(int playerNumber);
+int help(char *chk);
+void get_name(int playerNumber);
+void set_AI(int playerNumber);
 
 #endif /* menus_h */

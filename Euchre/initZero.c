@@ -19,16 +19,25 @@ void zero_players() {
 }
 
 void init_players() {
-	zero_players();
-	// TODO: Add in manual entry of player names, welcome, and selection of human/computer players
+	playerList[0].name = "EAST"; //Amanda
+	playerList[0].AI = 1;
+	playerList[1].name = "SOUTH"; //Chris
+	playerList[1].AI = 1;
+	playerList[2].name = "WEST"; //Ben
+	playerList[2].AI = 1;
+	playerList[3].name = "NORTH"; //Michelle
+	playerList[3].AI = 1;
+}
+
+void default_players() {
 	playerList[0].name = "Amanda"; //EAST
 	playerList[0].AI = 2;
 	playerList[1].name = "Chris"; //SOUTH
 	playerList[1].AI = 0;
 	playerList[2].name = "Ben"; //WEST
-	playerList[0].AI = 2;
+	playerList[2].AI = 2;
 	playerList[3].name = "Michelle"; //NORTH
-	playerList[0].AI = 2;
+	playerList[3].AI = 2;
 }
 
 void zero_trick() {

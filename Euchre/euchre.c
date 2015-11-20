@@ -24,8 +24,8 @@ char *WEST = "WEST";
 int ls;
 
 void play_euchre() {
-    printf("Welcome to double-deck euchre!\n\n");
-    init_players();
+	greet();
+	set_players();
 	
 	int hands = 0;
     int dealer = 0;

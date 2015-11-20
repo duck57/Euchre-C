@@ -37,11 +37,6 @@ void shuffle(void *array, size_t n, size_t size) {
 	}
 }
 
-int mod(int a, int b) {
-	int r = a % b;
-	return r < 0 ? r + b : r;
-}
-
 void demo_shuffle();
 
 struct cmplex {

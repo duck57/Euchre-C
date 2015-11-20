@@ -11,6 +11,6 @@
 
 #include "initZero.h"
 #include "table.h"
-#include "menu.h"
+#include "menus.h"
 
 #endif /* setup_h */

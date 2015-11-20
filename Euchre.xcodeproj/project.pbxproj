@@ -14,6 +14,9 @@
 		203E08C51BF1E4510072565F /* scoring.c in Sources */ = {isa = PBXBuildFile; fileRef = 203E08C31BF1E4510072565F /* scoring.c */; };
 		20A786C71BFD500000A8AEB0 /* menus.c in Sources */ = {isa = PBXBuildFile; fileRef = 20A786C51BFD500000A8AEB0 /* menus.c */; };
 		20A786C91BFD9EBA00A8AEB0 /* numberTest.c in Sources */ = {isa = PBXBuildFile; fileRef = 20A786C81BFD9EBA00A8AEB0 /* numberTest.c */; };
+		20A786CC1BFDAB4F00A8AEB0 /* help.c in Sources */ = {isa = PBXBuildFile; fileRef = 20A786CA1BFDAB4F00A8AEB0 /* help.c */; };
+		20A786CF1BFEAEBB00A8AEB0 /* mathemagics.c in Sources */ = {isa = PBXBuildFile; fileRef = 20A786CD1BFEAEBB00A8AEB0 /* mathemagics.c */; };
+		20A786D01BFEAEBB00A8AEB0 /* mathemagics.c in Sources */ = {isa = PBXBuildFile; fileRef = 20A786CD1BFEAEBB00A8AEB0 /* mathemagics.c */; };
 		20D33D2D18E547BB0062CC1A /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 20D33D2C18E547BB0062CC1A /* main.c */; settings = {COMPILER_FLAGS = "-o euchre"; }; };
 		20D33D2F18E547BB0062CC1A /* Euchre.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 20D33D2E18E547BB0062CC1A /* Euchre.1 */; };
 		20D33D3B18E5CA5E0062CC1A /* card.c in Sources */ = {isa = PBXBuildFile; fileRef = 20D33D3A18E5CA5E0062CC1A /* card.c */; };
@@ -61,6 +64,10 @@
 		20A786C51BFD500000A8AEB0 /* menus.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = menus.c; sourceTree = "<group>"; };
 		20A786C61BFD500000A8AEB0 /* menus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = menus.h; sourceTree = "<group>"; };
 		20A786C81BFD9EBA00A8AEB0 /* numberTest.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = numberTest.c; path = test/numberTest.c; sourceTree = "<group>"; };
+		20A786CA1BFDAB4F00A8AEB0 /* help.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = help.c; sourceTree = "<group>"; };
+		20A786CB1BFDAB4F00A8AEB0 /* help.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = help.h; sourceTree = "<group>"; };
+		20A786CD1BFEAEBB00A8AEB0 /* mathemagics.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mathemagics.c; sourceTree = "<group>"; };
+		20A786CE1BFEAEBB00A8AEB0 /* mathemagics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mathemagics.h; sourceTree = "<group>"; };
 		20D33D2918E547BB0062CC1A /* Euchre */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Euchre; sourceTree = BUILT_PRODUCTS_DIR; };
 		20D33D2C18E547BB0062CC1A /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = main.c; path = Euchre/main.c; sourceTree = "<group>"; };
 		20D33D2E18E547BB0062CC1A /* Euchre.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; name = Euchre.1; path = Euchre/Euchre.1; sourceTree = "<group>"; };
@@ -97,6 +104,8 @@
 			children = (
 				20A786C51BFD500000A8AEB0 /* menus.c */,
 				20A786C61BFD500000A8AEB0 /* menus.h */,
+				20A786CA1BFDAB4F00A8AEB0 /* help.c */,
+				20A786CB1BFDAB4F00A8AEB0 /* help.h */,
 				20D33D4318E92AF50062CC1A /* ai.c */,
 				20D33D4218E92AED0062CC1A /* ai.h */,
 				201CE03F1BF1A22A00B723B8 /* humanIO.c */,
@@ -111,6 +120,8 @@
 			isa = PBXGroup;
 			children = (
 				20A786C81BFD9EBA00A8AEB0 /* numberTest.c */,
+				20A786CD1BFEAEBB00A8AEB0 /* mathemagics.c */,
+				20A786CE1BFEAEBB00A8AEB0 /* mathemagics.h */,
 				203E08B91BF1A3390072565F /* Controls */,
 				20D33D2E18E547BB0062CC1A /* Euchre.1 */,
 				20D33D2B18E547BB0062CC1A /* EuchreCore */,
@@ -226,6 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				20A786C91BFD9EBA00A8AEB0 /* numberTest.c in Sources */,
+				20A786D01BFEAEBB00A8AEB0 /* mathemagics.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,6 +245,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20A786CC1BFDAB4F00A8AEB0 /* help.c in Sources */,
 				20D33D3F18E929200062CC1A /* euchre.c in Sources */,
 				203E08C51BF1E4510072565F /* scoring.c in Sources */,
 				20D33D4518E92DC30062CC1A /* shuffle.c in Sources */,
@@ -243,6 +256,7 @@
 				20D33D2D18E547BB0062CC1A /* main.c in Sources */,
 				20D33D3B18E5CA5E0062CC1A /* card.c in Sources */,
 				20D33D4418E92AF50062CC1A /* ai.c in Sources */,
+				20A786CF1BFEAEBB00A8AEB0 /* mathemagics.c in Sources */,
 				203E08BF1BF1E19D0072565F /* initZero.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
