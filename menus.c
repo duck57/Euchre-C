@@ -8,11 +8,18 @@
 
 #include "menus.h"
 
-const int UNINIT = -1000;
-
 void greet() {
 	printf("Welcome to double-deck euchre!\n");
 	printf("Enter ? or H at any time and relevant help will be displayed.\n\n");
+	
+	// have to be given a value somewhere
+	UNINIT = -600;
+	HELP = 30;
+	NOTHING = 10;
+	ENTERED = 40;
+	OVER = 20;
+	OUT = 2;
+	ERROR = 7;
 }
 
 void set_players() {
@@ -83,9 +90,9 @@ void set_AI(int playerNumber) {
 	int AIlevel = UNINIT;
 	while (AIlevel == UNINIT) {
 		AIlevel = get_number_in_range("AI strength: ", -4, 2, 2);
-		if (AIlevel == 30 * UNINIT)
+		if (AIlevel == HELP * UNINIT)
 			h_AI_levels();
-		else if (AIlevel == 40 * UNINIT || AIlevel == 10 * UNINIT) {
+		else if (AIlevel == ENTERED * UNINIT || AIlevel == NOTHING * UNINIT) {
 			printf("\tDefaulting to a smart AI.\n");
 			AIlevel = 2;
 		}
@@ -115,22 +122,22 @@ int get_number_in_range(char *prompt, int min, int max, int digits) {
 				break;
 			case 1: // No input
 				printf("\tNull string not expected in normal operation; will use a default and continue.\n");
-				return 10 * UNINIT;
+				return NOTHING * UNINIT;
 				break;
 			case 2: // Too large for buffer
 				printf("\tMagnitude too great.\n");
-				return 20 * UNINIT;
+				return OVER * UNINIT;
 				break;
 			case 3: // help request
-				return 30 * UNINIT;
+				return HELP * UNINIT;
 				break;
 			case 4: // entering through and\or defaulting
-				return 40 * UNINIT;
+				return ENTERED * UNINIT;
 				break;
 				
 			default: // something's not right
 				printf("\tSomething went seriously wrong here; will pretend everything is normal.\n");
-				return 7 * UNINIT;
+				return ERROR * UNINIT;
 				break;
 		}
 	}

@@ -15,6 +15,14 @@
 #include "help.h"
 #include "mathemagics.h"
 
+int UNINIT;
+int HELP;
+int NOTHING;
+int ENTERED;
+int OVER;
+int OUT;
+int ERROR;
+
 void greet();
 void set_players();
 void setup_player(int playerNumber);

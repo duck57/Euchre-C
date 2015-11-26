@@ -25,5 +25,6 @@ double to_double(const char *str);
 void pad_zero(char *out, int number, int length);
 int random_int(int max);
 int random_float(double max);
+char *numStr_int(int number);
 
 #endif /* mathemagics_h */

@@ -195,3 +195,14 @@ int random_int(int max) {
 int random_float(double max) {
 	return floorf(((double)arc4random() / ARC4RANDOM_MAX) * max);
 }
+
+char *numStr_int(int number) {
+	int len = (int)ceil(log10((double)number));
+	char *out = malloc(len * sizeof(char));
+	while (number) {
+		len--;
+		out[len] = number%10 + ASCIImagic;
+		number = number/10;
+	}
+	return out;
+}

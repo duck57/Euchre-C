@@ -12,6 +12,7 @@
 		203E08BF1BF1E19D0072565F /* initZero.c in Sources */ = {isa = PBXBuildFile; fileRef = 203E08BD1BF1E19D0072565F /* initZero.c */; };
 		203E08C21BF1E3AB0072565F /* deckOps.c in Sources */ = {isa = PBXBuildFile; fileRef = 203E08C01BF1E3AB0072565F /* deckOps.c */; };
 		203E08C51BF1E4510072565F /* scoring.c in Sources */ = {isa = PBXBuildFile; fileRef = 203E08C31BF1E4510072565F /* scoring.c */; };
+		20432F7A1C070C3E00165BB1 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 20432F791C070C3E00165BB1 /* README.md */; };
 		20A786C71BFD500000A8AEB0 /* menus.c in Sources */ = {isa = PBXBuildFile; fileRef = 20A786C51BFD500000A8AEB0 /* menus.c */; };
 		20A786C91BFD9EBA00A8AEB0 /* numberTest.c in Sources */ = {isa = PBXBuildFile; fileRef = 20A786C81BFD9EBA00A8AEB0 /* numberTest.c */; };
 		20A786CC1BFDAB4F00A8AEB0 /* help.c in Sources */ = {isa = PBXBuildFile; fileRef = 20A786CA1BFDAB4F00A8AEB0 /* help.c */; };
@@ -59,6 +60,9 @@
 		203E08C31BF1E4510072565F /* scoring.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; path = scoring.c; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.c; };
 		203E08C41BF1E4510072565F /* scoring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = scoring.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		203E08CA1BF1F9140072565F /* test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = test; sourceTree = BUILT_PRODUCTS_DIR; };
+		20432F771C070C3000165BB1 /* RULES (human-readable) */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "RULES (human-readable)"; sourceTree = "<group>"; };
+		20432F781C070C3E00165BB1 /* license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = license; sourceTree = "<group>"; };
+		20432F791C070C3E00165BB1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		20A786C31BFD4E8D00A8AEB0 /* table.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = table.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		20A786C41BFD4F8A00A8AEB0 /* setup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = setup.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		20A786C51BFD500000A8AEB0 /* menus.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; path = menus.c; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.c; };
@@ -116,12 +120,23 @@
 			name = Controls;
 			sourceTree = "<group>";
 		};
-		20D33D2018E547BA0062CC1A = {
+		20432F7B1C070C5F00165BB1 /* Other */ = {
 			isa = PBXGroup;
 			children = (
 				20A786C81BFD9EBA00A8AEB0 /* numberTest.c */,
 				20A786CD1BFEAEBB00A8AEB0 /* mathemagics.c */,
 				20A786CE1BFEAEBB00A8AEB0 /* mathemagics.h */,
+				20432F781C070C3E00165BB1 /* license */,
+				20432F791C070C3E00165BB1 /* README.md */,
+				20432F771C070C3000165BB1 /* RULES (human-readable) */,
+			);
+			name = Other;
+			sourceTree = "<group>";
+		};
+		20D33D2018E547BA0062CC1A = {
+			isa = PBXGroup;
+			children = (
+				20432F7B1C070C5F00165BB1 /* Other */,
 				203E08B91BF1A3390072565F /* Controls */,
 				20D33D2E18E547BB0062CC1A /* Euchre.1 */,
 				20D33D2B18E547BB0062CC1A /* EuchreCore */,
@@ -255,6 +270,7 @@
 				20A786C71BFD500000A8AEB0 /* menus.c in Sources */,
 				20D33D2D18E547BB0062CC1A /* main.c in Sources */,
 				20D33D3B18E5CA5E0062CC1A /* card.c in Sources */,
+				20432F7A1C070C3E00165BB1 /* README.md in Sources */,
 				20D33D4418E92AF50062CC1A /* ai.c in Sources */,
 				20A786CF1BFEAEBB00A8AEB0 /* mathemagics.c in Sources */,
 				203E08BF1BF1E19D0072565F /* initZero.c in Sources */,

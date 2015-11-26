@@ -9,13 +9,51 @@
 #include "humanIO.h"
 
 int get_bet(player_t human, int currentHibet) {
+	int bet = UNINIT;
+	
+	// Turn me into a string bean! // I should not code at 4AM, especially after enjoying brandy
+	char betText[99] = "Bet (";
+	char betHelp[44] = "";
+	if (currentHibet) {
+		strlcat(betHelp, "must beat ", sizeof(betHelp));
+		strlcat(betHelp, numStr_int(currentHibet), sizeof(betHelp));
+		strlcat(betText, betHelp, sizeof(betText));
+	} else {
+		strlcat(betHelp, "6 or greater", sizeof(betHelp));
+		strlcat(betText, betHelp, sizeof(betText));
+	}
+	strlcat(betText, "): ", sizeof(betText));
+	
 	show_hand(human);
 	
-	return get_number_in_range("Bet? ", 0, 12, 2); //TODO: add validation & help
+	while (bet == UNINIT) {
+		bet = get_number_in_range(betText, -2, 12, 2);
+		if (bet == ENTERED * UNINIT || bet == -2)
+			return choose_bet(human, currentHibet);
+		if (bet == HELP * UNINIT)
+			h_betting();
+		if (bet == -1)
+			return random_euchre_bet();
+		if (bet < 0)
+			bet = UNINIT;
+		if (bet > 0 && bet < currentHibet) {
+			printf("\tMust beat the current high bet.  Enter 0 to pass.\n");
+			bet = UNINIT;
+		}
+	}
+	return bet;
 }
 
 int get_trump(player_t human) {
-	return get_number_in_range("Trump ID? ", 0, 5, 1); //TODO: add help
+	int trumpID = UNINIT;
+	while (trumpID == UNINIT) {
+		trumpID = get_number_in_range("Trump ID? ", 0, 5, 1);
+		if (trumpID == 30 * UNINIT)
+			h_trump();
+		if (trumpID < 0)
+			trumpID = UNINIT;
+	}
+	return trumpID;
 }
 
 int get_card(player_t human) {
