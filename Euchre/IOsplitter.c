@@ -2,8 +2,8 @@
 //  IOsplitter.c
 //  Euchre
 //
-//  Created by Chris Matlak on 11/10/15.
-//  Copyright © 2015 TimmyJ_NET. All rights reserved.
+//  Created by Chris J.M. on 11/10/15.
+//  Copyright © 2015 Euchre US!. 2-clause BSD.
 //
 
 #include "IOsplitter.h"
@@ -17,5 +17,9 @@ int pick_a_trump(player_t lead) {
 }
 
 int pick_a_card(player_t player) {
+	if (trickNumber == 11) { // final trick, only one card to play
+		h(0.1);
+		return 0;
+	}
 	return player.AI ? choose_card(player) : get_card(player);
 }

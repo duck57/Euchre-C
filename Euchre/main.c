@@ -2,8 +2,8 @@
 //  main.c
 //  Euchre
 //
-//  Created by Chris Matlak on 3/28/14.
-//  Copyright (c) 2014 TimmyJ_NET. All rights reserved.
+//  Created by Chris J.M. on 3/28/14.
+//  Copyright (c) 2014 Euchre US!. 2-clause BSD.
 //
 
 #include <stdio.h>

@@ -2,8 +2,8 @@
 //  card.c
 //  Euchre
 //
-//  Created by Chris Matlak on 3/28/14.
-//  Copyright (c) 2014 TimmyJ_NET. All rights reserved.
+//  Created by Chris J.M. on 3/28/14.
+//  Copyright (c) 2014 Euchre US!. 2-clause BSD.
 //
 
 #include <stdio.h>
@@ -119,7 +119,7 @@ char *show_rank(value_t value) {
             return "9";
             break;
         case TEN:
-            return "🔟";
+            return "Ⅹ";
             break;
         case JACK:
             return "J";
@@ -141,7 +141,7 @@ char *show_rank(value_t value) {
             break;
             
         default:
-            return "x";
+            return "?";
             break;
     }
 }
@@ -318,4 +318,16 @@ void make_card_trump(card_t card, suit_t trump) {
 				break;
 		}
 	}
+}
+
+char * display_trump(int trump) {
+	char *trumpDisp;
+	if (trump == 0) {
+		trumpDisp = "LoNo";
+	} else if (trump == 5) {
+		trumpDisp = "HiNo";
+	} else {
+		trumpDisp = display_suit((suit_t) trump);
+	}
+	return trumpDisp;
 }

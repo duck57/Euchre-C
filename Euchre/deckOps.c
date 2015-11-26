@@ -2,8 +2,8 @@
 //  DeckOperations.c
 //  Euchre
 //
-//  Created by Chris Matlak on 11/10/15.
-//  Copyright © 2015 TimmyJ_NET. All rights reserved.
+//  Created by Chris J.M. on 11/10/15.
+//  Copyright © 2015 Euchre US!. 2-clause BSD.
 //
 
 #include "DeckOps.h"
@@ -56,25 +56,10 @@ void make_euchre_deck(card_t euchreDeck[]) {
 	}
 }
 
-void show_hand(player_t player) {
-	printf("%s:\t",player.name);
+void print_hand(player_t player) {
 	for (int i = 0; i < 12; i++) {
 		show_card(player.hand[i]);
 	}
-	printf("\n");
-}
-
-void show_stats(int player) {
-	if (player%2!=0) {
-		printf("\t %d Us\t", scoreNS);
-		printf("\tYou %d %d Part\t", playerList[player].tricks, playerList[(player+2)%4].tricks);
-		printf("\t Them %d\n", scoreEW);
-	} else {
-		printf("\t %d Us\t", scoreEW);
-		printf("\tYou %d %d Part\t", playerList[player].tricks, playerList[(player+2)%4].tricks);
-		printf("\t Them %d\n", scoreNS);
-	}
-	show_hand(playerList[player]);
 }
 
 void play_card(int player, int cardLoc, int lead) {
@@ -83,7 +68,7 @@ void play_card(int player, int cardLoc, int lead) {
 	trick[pos] = cardPlayed;
 	discard[trickNumber*4+pos] = cardPlayed;
 	for (int i = cardLoc; i < 11; i++) {
-		playerList[player].hand[i] = playerList[player].hand[i + 1];
+		playerList[player].hand[i] = playerList[player].hand[i+1];
 	}
 	playerList[player].hand[11] = make_card(BLANK, NONE);
 }

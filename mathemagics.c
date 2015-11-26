@@ -2,31 +2,31 @@
 //  mathemagics.c
 //  Euchre
 //
-//  Created by Chris Matlak on 11/19/15.
-//  Copyright © 2015 TimmyJ_NET. All rights reserved.
+//  Created by Chris J.M. on 11/19/15.
+//  Copyright © 2015 Euchre US!. 2-clause BSD.
 //
 
 #include "mathemagics.h"
 
+#define ASCIImagic	48
+#define ARC4RANDOM_MAX      0x100000000
 
 int mod(int a, int b) {
 	int r = a % b;
 	return r < 0 ? r + b : r;
 }
 
+// Mostly from Stack Overflow with minor modifications
 bool is_valid_int(const char *str) {
 	// Handle negative numbers.
-	//
 	if (*str == '-')
 		++str;
 	
 	// Handle empty string or just "-".
-	//
 	if (!*str)
 		return false;
 	
 	// Check for non-digit chars in the rest of the stirng.
-	//
 	while (*str) {
 		if (!isdigit(*str))
 			return false;
@@ -37,10 +37,12 @@ bool is_valid_int(const char *str) {
 	return true;
 }
 
+// Helper for is_valid_number
 bool is_exponent_char(const char test) {
 	return (isdigit(test) || test == '-' || test == '+') ? true : false;
 }
 
+// Heavily modified version of is_valid_int meant to handle commas, decimals, and e+00 notation
 bool is_valid_number(const char *str) {
 	int commaSpace = 0;
 	bool hasDecimal = false;
@@ -57,7 +59,6 @@ bool is_valid_number(const char *str) {
 		return false;
 	
 	// Check for non-digit chars in the rest of the stirng.
-	//
 	while (*str) {
 		// Deal with thousands separators
 		if (*str == ',') {
@@ -110,7 +111,7 @@ int to_int (const char *str) {
 		}
 		if (*str == ',')
 			++str;
-		out += *str - 48; // Hopefully hard-coding ASCII won't bite me
+		out += *str - ASCIImagic; // Hopefully hard-coding ASCII won't bite me
 		++str;
 	}
 	return negative ? -out : out;
@@ -149,7 +150,7 @@ double to_double (const char *str) {
 			out *= pow(10.0,to_int(temp)-track);
 			return negative ? -out : out;
 		}
-		out += (*str - 48); // Hopefully hard-coding ASCII won't bite me
+		out += (*str - ASCIImagic); // Hopefully hard-coding ASCII won't bite me
 		++str;
 	}
 	out *= pow(10,-track);
@@ -161,4 +162,36 @@ int power(int base, unsigned int exp) {
 	for (i = 0; i < exp; i++)
 		result *= base;
 	return result;
+}
+
+void pad_zero(char *out, int number, int length) {
+	int l2 = 0;
+	if (number < 0) {
+		l2 = 1;
+		number = -number;
+		out[0] = '-';
+	}
+	out[length] = '\0';
+	if (log10((double)number) > length - l2) {
+		printf("\nERROR: number is longer than space alloted.\n");
+		return;
+	}
+	for (int i=l2; i<length; i++) {
+		out[i] = '0';
+	}
+	int where = length-1;
+	while (number) {
+		out[where] = number%10 + ASCIImagic; // ASCII magic number again
+		number = number/10;
+		where--;
+	}
+}
+
+// Returns a random int between 0 and max
+int random_int(int max) {
+	return  arc4random() % (max+1);
+}
+
+int random_float(double max) {
+	return floorf(((double)arc4random() / ARC4RANDOM_MAX) * max);
 }

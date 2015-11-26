@@ -2,11 +2,10 @@
 //  ai.c
 //  Euchre
 //
-//  Created by Chris Matlak on 3/31/14.
-//  Copyright (c) 2014 TimmyJ_NET. All rights reserved.
+//  Created by Chris J.M. on 3/31/14.
+//  Copyright (c) 2014 Euchre US!. 2-clause BSD.
 //
 
-#include <stdio.h>
 #include "ai.h"
 
 /*
@@ -111,6 +110,7 @@ void generate_bid_list(player_t computer, int computer_location) {
 }
 
 int choose_bet(player_t computer, int currentHibet) {
+	h(0.123);
 	if (computer.AI<0)
 		return random_euchre_bet();
 	int testBet = computer.bidList[computer.bidList[6]];
@@ -142,6 +142,7 @@ void print_bids(player_t computer) {
 }
 
 int choose_card(player_t computer) {
+	h(0.111);
 	int validCardAry[13];
 	sort_hand(computer.hand, 12-trickNumber);
 	get_valid_cards(computer.hand, validCardAry);
@@ -179,6 +180,7 @@ int play_random_card(player_t computer) {
 }
 
 int choose_trump(player_t computer) {
+	h(0.099);
 	return (computer.AI>0||computer.AI==-4) ? computer.bidList[6] : random_bidEuchre_trump();
 }
 
@@ -203,8 +205,4 @@ int random_euchre_bet() {
 
 int random_bidEuchre_trump() {
 	return random_int(6);
-}
-
-int random_int(int max) {
-	return  (((float)arc4random()/0x100000000)*max);
 }

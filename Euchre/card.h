@@ -2,8 +2,8 @@
 //  card.h
 //  Euchre
 //
-//  Created by Chris Matlak on 3/28/14.
-//  Copyright (c) 2014 TimmyJ_NET. All rights reserved.
+//  Created by Chris J.M. on 3/28/14.
+//  Copyright (c) 2014 Euchre US!. 2-clause BSD.
 //
 
 #ifndef Euchre_card_h
@@ -45,6 +45,7 @@ int follow_suit(const card_t card, const suit_t checkSuit);
 
 void revert_card(card_t card, suit_t trumpSuit);
 void make_card_trump(card_t card, suit_t trump);
+char * display_trump(int trump);
 
 
 #endif

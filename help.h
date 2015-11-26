@@ -2,8 +2,8 @@
 //  help.h
 //  Euchre
 //
-//  Created by Chris Matlak on 11/19/15.
-//  Copyright © 2015 TimmyJ_NET. All rights reserved.
+//  Created by Chris J.M. on 11/19/15.
+//  Copyright © 2015 Euchre US!. 2-clause BSD.
 //
 
 #ifndef help_h
@@ -19,5 +19,6 @@ void h_AI_levels();
 void h_betting();
 void h_trump();
 void h_playcard();
+void h_anyways();
 
 #endif /* help_h */

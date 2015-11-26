@@ -2,8 +2,8 @@
 //  euchre.c
 //  Euchre
 //
-//  Created by Chris Matlak on 3/31/14.
-//  Copyright (c) 2014 TimmyJ_NET. All rights reserved.
+//  Created by Chris J.M. on 3/31/14.
+//  Copyright (c) 2014 Euchre US!. 2-clause BSD.
 //
 
 #include <stdio.h>
@@ -33,6 +33,7 @@ void play_euchre() {
         play_hand(dealer);
         dealer = (dealer+1)%4;
 		hands++;
+		h(1.5);
     }
     if (scoreNS < allLoseCondition && scoreEW < allLoseCondition) {
         printf("\n\nAfter %d hands, you all lose.\n\n", hands);
@@ -67,10 +68,10 @@ int score_in_range() {
 		return 0;
 	}
 	// If both teams have enough of a negative score, they both lose
-	if (scoreEW > allLoseCondition) {
+	if (scoreEW > allLoseCondition - 1) {
 		return 1;
 	}
-	if (scoreNS > allLoseCondition) {
+	if (scoreNS > allLoseCondition - 1) {
 		return 1;
 	}
 	return 0;
@@ -85,20 +86,15 @@ void play_hand(int dealer) {
 	//betting and trump selection
     lead = get_bets(dealer);
 	trump = pick_a_trump(playerList[lead]);
-    char *trumpDisp;
-    if (trump == 0) {
-        trumpDisp = "LoNo";
-		LoNo = 1;
-    } else if (trump == 5) {
-        trumpDisp = "HiNo";
-    } else {
-        trumpDisp = display_suit((suit_t) trump);
-    }
+	char *trumpDisp = display_trump(trump);
     printf("%s.\n\n", trumpDisp); //print trump; lead-in text should be handled in get_bets()
+	if (trump ==0)
+		LoNo = 1;
 	
 	// actually play the round
 	for (trickNumber=0; trickNumber<12; trickNumber++) {
         lead = play_trick(lead);
+		h(0.5);
     }
 	
 	// scoring
@@ -110,17 +106,10 @@ int play_trick(int lead) {
     for (int p = lead; p < lead+4; p++) {
 		play_card(p%4, pick_a_card(playerList[p%4]), lead);
         printf("%s plays ", playerList[p%4].name);
-        show_card(trick[(p-lead)%4]);
+        show_card(trick[p-lead]);
         printf("\n");
     }
-    
-    //score cards
-    int bigCardLoc = score_trick();
-    int newLead = (lead+bigCardLoc)%4;
-    playerList[newLead].tricks++;
-	zero_trick();
-    printf("%s won\n\n", playerList[newLead].name);
-    return newLead;
+	return score_trick(lead);
 }
 
 int get_bets(int dealer) {
