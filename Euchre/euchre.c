@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Euchre US!. 2-clause BSD.
 //
 
-#include <stdio.h>
 #include "euchre.h"
 
 
@@ -21,19 +20,15 @@ char *SOUTH = "SOUTH";
 char *EAST = "EAST";
 char *WEST = "WEST";
 
-int ls;
-
 void play_euchre() {
-	greet();
-	set_players();
-	
-	int hands = 0;
-    int dealer = 0;
+	int hands = 1;
+    dealer = random_int(3); // randomly assign the starting dealer
     while (score_in_range()) {
+		printf("Hand %d\n", hands);
         play_hand(dealer);
         dealer = (dealer+1)%4;
 		hands++;
-		h(1.5);
+		h(1.5 * sec);
     }
     if (scoreNS < allLoseCondition && scoreEW < allLoseCondition) {
         printf("\n\nAfter %d hands, you all lose.\n\n", hands);
@@ -80,21 +75,19 @@ int score_in_range() {
 void play_hand(int dealer) {
     deal();
     printf("Dealer: %s\t\tScores: NS %d\tEW %d\n", playerList[dealer].name, scoreNS, scoreEW);
-	ls=0;
-	LoNo=0;
 	
 	//betting and trump selection
     lead = get_bets(dealer);
-	trump = pick_a_trump(playerList[lead]);
-	char *trumpDisp = display_trump(trump);
+	trumpCall = pick_a_trump(playerList[lead]);
+	char *trumpDisp = display_trump(trumpCall);
     printf("%s.\n\n", trumpDisp); //print trump; lead-in text should be handled in get_bets()
-	if (trump ==0)
-		LoNo = 1;
+	declare_trump(trumpCall);
 	
 	// actually play the round
 	for (trickNumber=0; trickNumber<12; trickNumber++) {
+		printf("Trick %d\n", trickNumber+1);
         lead = play_trick(lead);
-		h(0.5);
+		h(0.5 * sec);
     }
 	
 	// scoring
@@ -106,42 +99,45 @@ int play_trick(int lead) {
     for (int p = lead; p < lead+4; p++) {
 		play_card(p%4, pick_a_card(playerList[p%4]), lead);
         printf("%s plays ", playerList[p%4].name);
-        show_card(trick[p-lead]);
+        show_card(trick[p-lead], trumpSuit);
         printf("\n");
     }
 	return score_trick(lead);
 }
 
 int get_bets(int dealer) {
-    int currentHighbet = 0;
     betEW = 0;
     betNS = 0;
-    int where = (dealer + 1)%4;
+    bids[4] = (dealer+1)%4;
     for (int i = dealer+1; i < dealer+5; i++) {
         int playerBet = 0;
-        if ((i-dealer)%4 == 0 && currentHighbet < 6)
+        if ((i-dealer)%4 == 0 && bids[bids[4]] < 6)
             return stick_dealer(dealer);
-		playerBet = pick_a_bet(playerList[i%4], currentHighbet);
-        if (playerBet > currentHighbet) {
-            currentHighbet = playerBet;
-            where = i%4;
-            printf("%s bet %d\n", playerList[where].name, playerBet);
+		playerBet = pick_a_bet(playerList[i%4], bids[bids[4]]);
+		if (playerBet == 24) {
+			printf("%s called a loner!\n", playerList[i%4].name);
+			return i%4; //end bidding once someone calls a loner
+		}
+        if (playerBet > bids[bids[4]]) {
+			bids[4] = i%4;
+            bids[bids[4]] = playerBet;
+            printf("%s bet %d\n", playerList[bids[4]].name, playerBet);
         } else {
             printf("%s passes\n", playerList[i%4].name);
         }
     }
-	set_bets(where, currentHighbet);
-	return where;
+	set_bets(bids[4], bids[bids[4]]);
+	return bids[4];
 }
 
 void set_bets(int winningPlayerLoc, int winningBet) {
 	printf("%s won a bet of %d and called ", playerList[winningPlayerLoc].name, winningBet); //trump listed later on
-	if (winningBet==20) {
-		ls=1;
-		winningBet=12;
-	} else if (winningBet==24) {
-		ls=2;
-		winningBet=12;
+	if (winningBet == 20) {
+		alone = 1;
+		winningBet = 12;
+	} else if (winningBet == 24) {
+		alone = 2;
+		winningBet = 12;
 	}
 	if (winningPlayerLoc%2 == 0)
 		betEW = winningBet;

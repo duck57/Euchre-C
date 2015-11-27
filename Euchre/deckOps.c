@@ -9,6 +9,12 @@
 #include "DeckOps.h"
 
 void deal() {
+	alone = 0;
+	LoNo = 0;
+	for (int i=0; i<5; i++) {
+		bids[i] = 0;
+	}
+	
 	make_double_euchre_deck(euchreDeck);
 	shuffle_deck();
 	int k = 0;
@@ -58,7 +64,8 @@ void make_euchre_deck(card_t euchreDeck[]) {
 
 void print_hand(player_t player) {
 	for (int i = 0; i < 12; i++) {
-		show_card(player.hand[i]);
+		show_card(player.hand[i], trumpSuit);
+		printf("\t");
 	}
 }
 
@@ -110,14 +117,38 @@ void trump_hand(player_t player, suit_t trump) {
 	}
 }
 
-void declare_trump(int trump) {
-	if (trump==5)
-		return;
-	if (trump==0) {
-		LoNo = 1;
-		return;
+void declare_trump(int trumpIn) {
+	// no one should have cards of type "trump" in their hand when trump is delcared
+	// This may need to change if we use this is the base for non-Euchre games
+	trumpSuit = TRUMP;
+
+	switch (trumpIn) {
+		case 0:
+			LoNo = 1;
+			return;
+			break;
+		case 1:
+			trumpSuit = CLUBS;
+			break;
+		case 2:
+			trumpSuit = DIAMONDS;
+			break;
+		case 3:
+			trumpSuit = SPADES;
+			break;
+		case 4:
+			trumpSuit = HEARTS;
+			break;
+		case 5:
+			return;
+			
+		default:
+			printf("\nTrump error.\n");
+			return;
+			break;
 	}
+	
 	for (int i=0; i<4; i++) {
-		trump_hand(playerList[i], trump);
+		trump_hand(playerList[i], trumpSuit);
 	}
 }

@@ -25,4 +25,5 @@ int random_bidEuchre_trump();
 int play_random_card(player_t computer);
 void get_valid_cards(card_t hand[], int validCardAry[]);
 
+
 #endif

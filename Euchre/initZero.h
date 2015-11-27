@@ -12,11 +12,14 @@
 #include <stdio.h>
 #include <string.h>
 #include "table.h"
+#include "menus.h"
 
 void init_players();
 void zero_players();
 void zero_trick();
 void zero_discard();
 void default_players();
+void init_euchre();
+void reset_euchre();
 
 #endif /* initZero_h */

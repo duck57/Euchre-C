@@ -18,7 +18,7 @@ int pick_a_trump(player_t lead) {
 
 int pick_a_card(player_t player) {
 	if (trickNumber == 11) { // final trick, only one card to play
-		h(0.1);
+		h(0.1 * sec);
 		return 0;
 	}
 	return player.AI ? choose_card(player) : get_card(player);

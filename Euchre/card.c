@@ -14,24 +14,41 @@ card_t make_card(suit_t suit, value_t value) {
     return temp;
 }
 
-char *display_card(card_t card) {
-    char *test = "";
-    sprintf(test, "%s%s", show_rank(card.rank), show_suit(card.colour));
+char *print_card(card_t card, suit_t trumpSuit) {
+    char *test = malloc(sizeof(char[2]));
+	suit_t outSuit = card.colour;
+	value_t dspVal = card.rank;
+	if (card.colour == TRUMP) {
+		outSuit = trumpSuit;
+		if ((card.rank == LEFT || card.rank == RIGHT) && trumpSuit != TRUMP)
+			dspVal = JACK;
+	}
+    sprintf(test, "%s%s", show_rank(dspVal), show_suit(outSuit));
     return test;
 }
 
-void show_card(card_t card) {
-    printf("%s%s ", show_rank(card.rank), show_suit(card.colour));
+void show_card(card_t card, suit_t trumpSuit) {
+    printf("%s", print_card(card, trumpSuit));
+}
+
+char *print_card_full(card_t card) {
+	char *temp = malloc(44*sizeof(char));
+	switch (card.rank) {
+		case LEFT:
+			sprintf(temp, "Left Bower");
+			break;
+		case RIGHT:
+			sprintf(temp, "Right Bower");
+			
+		default:
+			sprintf(temp, "%s of %s", display_rank(card.rank), display_suit(card.colour));
+			break;
+	}
+	return temp;
 }
 
 void show_card_full(card_t card) {
-    printf("%s of %s ", display_rank(card.rank), display_suit(card.colour));
-}
-
-char *display_card_full(card_t card) {
-    char *temp = "";
-    sprintf(temp, "%s of %s", display_rank(card.rank), display_suit(card.colour));
-    return temp;
+    printf("%s ", print_card_full(card));
 }
 
 // Use this comparison for sort operators to group cards by suit in your hand
@@ -119,7 +136,7 @@ char *show_rank(value_t value) {
             return "9";
             break;
         case TEN:
-            return "Ⅹ";
+            return "⒑";
             break;
         case JACK:
             return "J";
@@ -151,19 +168,19 @@ char *show_suit(suit_t colour) {
             return "🃏";
             break;
         case HEARTS:
-            return "♥";
+            return "♥️";
             break;
         case SPADES:
-            return "♠";
+            return "♠️";
             break;
         case DIAMONDS:
-            return "♦︎";
+            return "♦️";
             break;
         case CLUBS:
-            return "♣︎";
+            return "♣️";
             break;
         case TRUMP:
-            return "✯";
+            return "🌟";
             break;
         case BLANK:
             return " ";
@@ -281,32 +298,32 @@ void revert_card(card_t card, suit_t trumpSuit) {
 		card.colour = trumpSuit;
 }
 
-void make_card_trump(card_t card, suit_t trump) {
-	if (card.colour == trump) {
+void make_card_trump(card_t card, suit_t trumpSuit) {
+	if (card.colour == trumpSuit) {
 		card.colour = TRUMP;
 		if (card.rank == JACK)
 			card.rank = RIGHT;
 	} else if (card.rank == JACK) {
-		switch (trump) {
-			case 1:
+		switch (trumpSuit) {
+			case CLUBS:
 				if (card.colour == SPADES) {
 					card.colour = TRUMP;
 					card.rank = LEFT;
 				}
 				break;
-			case 2:
+			case DIAMONDS:
 				if (card.colour == HEARTS) {
 					card.colour = TRUMP;
 					card.rank = LEFT;
 				}
 				break;
-			case 3:
+			case SPADES:
 				if (card.colour == CLUBS) {
 					card.colour = TRUMP;
 					card.rank = LEFT;
 				}
 				break;
-			case 4:
+			case HEARTS:
 				if (card.colour == DIAMONDS) {
 					card.colour = TRUMP;
 					card.rank = LEFT;
@@ -330,4 +347,8 @@ char * display_trump(int trump) {
 		trumpDisp = display_suit((suit_t) trump);
 	}
 	return trumpDisp;
+}
+
+int is_blank_card(card_t card) {
+	return compare_card_c(card, blank_card(), 1, 0);
 }

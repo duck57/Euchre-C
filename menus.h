@@ -34,4 +34,6 @@ int getLine (char *prmpt, char *buff, size_t sz);
 int input(char *prompt, char *readBuff, size_t size);
 int get_number_in_range(char *prompt, int min, int max, int digits);
 
+int repeat();
+
 #endif /* menus_h */

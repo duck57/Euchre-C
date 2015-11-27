@@ -197,7 +197,7 @@ int random_float(double max) {
 }
 
 char *numStr_int(int number) {
-	int len = (int)ceil(log10((double)number));
+	int len = (int)floor(log10((double)number))+1;
 	char *out = malloc(len * sizeof(char));
 	while (number) {
 		len--;

@@ -22,7 +22,7 @@ void show_hand(player_t player);
 void play_card(int player, int cardLoc, int lead);
 int is_valid_card(card_t hand[], card_t test);
 void trump_hand(player_t player, suit_t trump);
-void declare_trump(int trump);
+void declare_trump(int trumpIn);
 void print_hand(player_t player);
 
 

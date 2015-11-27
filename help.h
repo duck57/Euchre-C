@@ -20,5 +20,6 @@ void h_betting();
 void h_trump();
 void h_playcard();
 void h_anyways();
+void h_repeat();
 
 #endif /* help_h */

@@ -35,6 +35,9 @@ int trickNumber;
 	If it's not intended to be at all malleable, it's declared in euchre.c */
 int scoreNS, scoreEW;
 int betNS, betEW;
-int LoNo, trump, lead;
+int LoNo, trumpCall, lead, dealer, alone;
+int bids[5]; // one slot for each of the bids and a final one for the winning bid
+suit_t trumpSuit;
+double sec; // for speed purposes
 
 #endif /* table_h */

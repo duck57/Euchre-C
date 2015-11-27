@@ -111,7 +111,8 @@ int get_number_in_range(char *prompt, int min, int max, int digits) {
 		switch (stat) {
 			case 0: // Some in the correct buffer size
 				if (!is_valid_number(numberIN)) {
-					printf("\tEnter a number.\n\t%s\t->\t%d\n", numberIN, to_int(numberIN));
+					printf("\tEnter a number.\n");
+					//printf("\t%s\t->\t%d\n", numberIN, to_int(numberIN));
 				} else {
 					numberOut = to_int(numberIN);
 					if (numberOut < min || numberOut > max) {
@@ -181,4 +182,21 @@ int input(char *prompt, char *readBuff, size_t size) {
 	if (readBuff[0] == '\0')
 		return ENTER;
 	return help(readBuff) ? HELP : stat;
+}
+
+int repeat() {
+	char inStr[2];
+	int stat = UNINIT;
+	while (stat == UNINIT) {
+		stat = input("\nPlay again? ", inStr, sizeof(inStr));
+		if (stat == 3) {
+			h_repeat();
+			stat = UNINIT;
+		}
+		if (inStr[0]=='Y' || inStr[0]=='y')
+			return 2;
+		if (inStr[0]=='R' || inStr[0]=='r')
+			return 1;
+	}
+	return 0;
 }

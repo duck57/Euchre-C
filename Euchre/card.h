@@ -33,9 +33,9 @@ char *show_suit(suit_t colour);
 char *display_rank(value_t value);
 char *display_suit(suit_t colour);
 
-char *display_card(card_t card);
-char *display_card_full(card_t card);
-void show_card(card_t card);
+char *print_card(card_t card, suit_t trumpSuit);
+char *print_card_full(card_t card);
+void show_card(card_t card, suit_t trumpSuit);
 void show_card_full(card_t card);
 
 int card_random();
@@ -46,6 +46,8 @@ int follow_suit(const card_t card, const suit_t checkSuit);
 void revert_card(card_t card, suit_t trumpSuit);
 void make_card_trump(card_t card, suit_t trump);
 char * display_trump(int trump);
+
+int is_blank_card(card_t card);
 
 
 #endif

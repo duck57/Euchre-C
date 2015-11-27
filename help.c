@@ -56,3 +56,13 @@ void h_betting() {
 	printf("\tTo call a loner or shooter, enter 24.\n");
 	//printf("\tEnter -1 to place a random bet or -2 to place a computer-generated bet.");
 }
+
+void h_repeat() {
+	printf("\tEnter Y to play again with the same players.\n");
+	printf("\tEnter R to play again with new players.\n");
+	printf("\tAnything else to quit.\n");
+}
+
+void h_playcard() {
+	printf("\t\tEnter the index of the card to play or -1 to have the computer pick.");
+}

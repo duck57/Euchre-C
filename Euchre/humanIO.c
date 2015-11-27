@@ -24,6 +24,10 @@ int get_bet(player_t human, int currentHibet) {
 	}
 	strlcat(betText, "): ", sizeof(betText));
 	
+	// Don't go bidding 4
+	if (!currentHibet)
+		currentHibet = 5;
+	
 	show_hand(human);
 	
 	while (bet == UNINIT) {
@@ -32,12 +36,15 @@ int get_bet(player_t human, int currentHibet) {
 			return choose_bet(human, currentHibet);
 		if (bet == HELP * UNINIT)
 			h_betting();
-		if (bet == -1)
+		if (bet == -1 || bet == NOTHING * UNINIT)
 			return random_euchre_bet();
 		if (bet < 0)
 			bet = UNINIT;
-		if (bet > 0 && bet < currentHibet) {
-			printf("\tMust beat the current high bet.  Enter 0 to pass.\n");
+		if (bet > 0 && bet <= currentHibet) {
+			if (currentHibet==5)
+				printf("\tMinimum bid is 6.\n");
+			else
+				printf("\tMust beat the current high bet.  Enter 0 to pass.\n");
 			bet = UNINIT;
 		}
 	}
@@ -48,7 +55,7 @@ int get_trump(player_t human) {
 	int trumpID = UNINIT;
 	while (trumpID == UNINIT) {
 		trumpID = get_number_in_range("Trump ID? ", 0, 5, 1);
-		if (trumpID == 30 * UNINIT)
+		if (trumpID == HELP * UNINIT)
 			h_trump();
 		if (trumpID < 0)
 			trumpID = UNINIT;
@@ -62,9 +69,27 @@ int get_card(player_t human) {
 	printf("\n\t");
 	for (int i=0; i<12-trickNumber; i++) {
 		pad_zero(dNum, i, 2);
-		printf("%s ", dNum);
+		printf("%d\t", i);
 	}
-	return get_number_in_range("\n\tCard index? ", -1, 12-trickNumber, 2); //TODO: add validation & help
+	
+	int cardLoc = UNINIT;
+	while (cardLoc == UNINIT) {
+		cardLoc = get_number_in_range("\n\tCard index? ", -1, 11-trickNumber, 2);
+		if (cardLoc == HELP * UNINIT) {
+			h_playcard();
+			cardLoc = UNINIT;
+		}
+		if (cardLoc == ENTERED * UNINIT || cardLoc == NOTHING * UNINIT)
+			return play_random_card(human);
+		if (cardLoc == -1)
+			return choose_card(human);
+		if (is_valid_card(human.hand, human.hand[cardLoc]))
+			return cardLoc;
+		if (cardLoc > -1 && cardLoc < 12)
+			printf("\t\tYou must follow suit.");
+		cardLoc = UNINIT;
+	}
+	return play_random_card(human);
 }
 
 void show_stats(int player) {
@@ -83,13 +108,13 @@ void stat_text(int playerNum, int yourBet, int theirBet) {
 		printf("\tThey bet %d", theirBet);
 	printf("\t\t%s %d ", "You", playerList[playerNum].tricks);
 	printf("%d %s\n", playerList[(playerNum+2)%4].tricks, playerList[(playerNum+2)%4].name);
-	printf("\t%s:\t", display_trump(trump));
+	printf("\t%s:\t", display_trump(trumpCall));
 	if (compare_card_c(trick[0], make_card(BLANK, NONE), 1, LoNo) == 0)
 		printf("Your lead");
 	else
 		for (int i=0; i<4; i++) {
-			show_card(trick[i]);
-			printf(" ");
+			show_card(trick[i], trumpSuit);
+			printf("\t");
 		}
 	printf("\n");
 }
