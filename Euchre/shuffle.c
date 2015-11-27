@@ -2,18 +2,11 @@
 //  shuffle.c
 //  Euchre
 //
-//  Created by Chris Matlak on 3/28/14.
-//  Copyright (c) 2014 TimmyJ_NET. All rights reserved.
+//  Created by Chris J.M. on 3/28/14.
+//  Copyright (c) 2014 Euchre US!. 2-clause BSD.
 //
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <time.h>
 #include "shuffle.h"
-
-/* compile and run with
- * cc shuffle.c -o shuffle && ./shuffle */
 
 /* arrange the N elements of ARRAY in random order.
  * Only effective if N is much smaller than RAND_MAX;
@@ -37,36 +30,11 @@ void shuffle(void *array, size_t n, size_t size) {
 	}
 }
 
-int mod(int a, int b) {
-	int r = a % b;
-	return r < 0 ? r + b : r;
-}
-
-void demo_shuffle();
-
-struct cmplex {
-    int foo;
-    double bar;
-};
-
-void demo_shuffle() {
-	srand48(time(NULL));
+#define ONESEC	1000000
+void h(double time) {
+	struct timeval tv;
+	tv.tv_sec = (int)time;
+	tv.tv_usec = (int)(time*ONESEC)%ONESEC;
 	
-    int intarr[] = { 1, -5, 7, 3, 20, 2 };
-    
-    print_type(NELEMS(intarr), printf("%d,", intarr[i]));
-    shuffle(intarr, NELEMS(intarr), sizeof(intarr[0]));
-    print_type(NELEMS(intarr), printf("%d,", intarr[i]));
-    
-    struct cmplex cmparr[] = {
-        { 1, 3.14 },
-        { 5, 7.12 },
-        { 9, 8.94 },
-        { 20, 1.84 }
-    };
-    
-    print_type(NELEMS(intarr), printf("{%d %f},", cmparr[i].foo, cmparr[i].bar));
-    shuffle(cmparr, NELEMS(cmparr), sizeof(cmparr[0]));
-    print_type(NELEMS(intarr), printf("{%d %f},", cmparr[i].foo, cmparr[i].bar));
-    
+	select(1, NULL, NULL, NULL, &tv);
 }

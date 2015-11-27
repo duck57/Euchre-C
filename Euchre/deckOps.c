@@ -2,13 +2,19 @@
 //  DeckOperations.c
 //  Euchre
 //
-//  Created by Chris Matlak on 11/10/15.
-//  Copyright © 2015 TimmyJ_NET. All rights reserved.
+//  Created by Chris J.M. on 11/10/15.
+//  Copyright © 2015 Euchre US!. 2-clause BSD.
 //
 
 #include "DeckOps.h"
 
 void deal() {
+	alone = 0;
+	LoNo = 0;
+	for (int i=0; i<5; i++) {
+		bids[i] = 0;
+	}
+	
 	make_double_euchre_deck(euchreDeck);
 	shuffle_deck();
 	int k = 0;
@@ -56,35 +62,20 @@ void make_euchre_deck(card_t euchreDeck[]) {
 	}
 }
 
-void show_hand(player_t player) {
-	printf("%s:\t",player.name);
+void print_hand(player_t player) {
 	for (int i = 0; i < 12; i++) {
-		show_card(player.hand[i]);
+		show_card(player.hand[i], trumpSuit);
+		printf("\t");
 	}
-	printf("\n");
-}
-
-void show_stats(int player) {
-	if (player%2!=0) {
-		printf("\t %d Us\t", scoreNS);
-		printf("\tYou %d %d Part\t", playerList[player].tricks, playerList[(player+2)%4].tricks);
-		printf("\t Them %d\n", scoreEW);
-	} else {
-		printf("\t %d Us\t", scoreEW);
-		printf("\tYou %d %d Part\t", playerList[player].tricks, playerList[(player+2)%4].tricks);
-		printf("\t Them %d\n", scoreNS);
-	}
-	show_hand(playerList[player]);
 }
 
 void play_card(int player, int cardLoc, int lead) {
 	int pos = mod(player-lead, 4);
 	card_t cardPlayed = playerList[player].hand[cardLoc];
-	show_card(cardPlayed); printf(" ");
 	trick[pos] = cardPlayed;
 	discard[trickNumber*4+pos] = cardPlayed;
 	for (int i = cardLoc; i < 11; i++) {
-		playerList[player].hand[i] = playerList[player].hand[i + 1];
+		playerList[player].hand[i] = playerList[player].hand[i+1];
 	}
 	playerList[player].hand[11] = make_card(BLANK, NONE);
 }
@@ -126,14 +117,38 @@ void trump_hand(player_t player, suit_t trump) {
 	}
 }
 
-void declare_trump(int trump) {
-	if (trump==5)
-		return;
-	if (trump==0) {
-		LoNo = 1;
-		return;
+void declare_trump(int trumpIn) {
+	// no one should have cards of type "trump" in their hand when trump is delcared
+	// This may need to change if we use this is the base for non-Euchre games
+	trumpSuit = TRUMP;
+
+	switch (trumpIn) {
+		case 0:
+			LoNo = 1;
+			return;
+			break;
+		case 1:
+			trumpSuit = CLUBS;
+			break;
+		case 2:
+			trumpSuit = DIAMONDS;
+			break;
+		case 3:
+			trumpSuit = SPADES;
+			break;
+		case 4:
+			trumpSuit = HEARTS;
+			break;
+		case 5:
+			return;
+			
+		default:
+			printf("\nTrump error.\n");
+			return;
+			break;
 	}
+	
 	for (int i=0; i<4; i++) {
-		trump_hand(playerList[i], trump);
+		trump_hand(playerList[i], trumpSuit);
 	}
 }

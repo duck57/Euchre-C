@@ -2,20 +2,29 @@
 //  scoring.c
 //  Euchre
 //
-//  Created by Chris Matlak on 11/10/15.
-//  Copyright © 2015 TimmyJ_NET. All rights reserved.
+//  Created by Chris J.M. on 11/10/15.
+//  Copyright © 2015 Euchre US!. 2-clause BSD.
 //
 
 #include "scoring.h"
 
 
-int score_trick() {
+int find_big_card() {
 	int bigCardLoc = 0;
 	for (int i=1; i<4; i++) {
 		if (follow_suit(trick[i],trick[0].colour) && (compare_card_c(trick[i], trick[bigCardLoc], 1, LoNo) > 0))
 			bigCardLoc = i;
 	}
 	return bigCardLoc;
+}
+
+int score_trick(int lead) {
+	int bigCardLoc = find_big_card();
+	int newLead = (lead+bigCardLoc)%4;
+	playerList[newLead].tricks++;
+	zero_trick();
+	printf("%s won\n\n", playerList[newLead].name);
+	return newLead;
 }
 
 void score_hand() {

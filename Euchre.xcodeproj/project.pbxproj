@@ -14,6 +14,9 @@
 		203E08C51BF1E4510072565F /* scoring.c in Sources */ = {isa = PBXBuildFile; fileRef = 203E08C31BF1E4510072565F /* scoring.c */; };
 		20A786C71BFD500000A8AEB0 /* menus.c in Sources */ = {isa = PBXBuildFile; fileRef = 20A786C51BFD500000A8AEB0 /* menus.c */; };
 		20A786C91BFD9EBA00A8AEB0 /* numberTest.c in Sources */ = {isa = PBXBuildFile; fileRef = 20A786C81BFD9EBA00A8AEB0 /* numberTest.c */; };
+		20A786CC1BFDAB4F00A8AEB0 /* help.c in Sources */ = {isa = PBXBuildFile; fileRef = 20A786CA1BFDAB4F00A8AEB0 /* help.c */; };
+		20A786CF1BFEAEBB00A8AEB0 /* mathemagics.c in Sources */ = {isa = PBXBuildFile; fileRef = 20A786CD1BFEAEBB00A8AEB0 /* mathemagics.c */; };
+		20A786D01BFEAEBB00A8AEB0 /* mathemagics.c in Sources */ = {isa = PBXBuildFile; fileRef = 20A786CD1BFEAEBB00A8AEB0 /* mathemagics.c */; };
 		20D33D2D18E547BB0062CC1A /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 20D33D2C18E547BB0062CC1A /* main.c */; settings = {COMPILER_FLAGS = "-o euchre"; }; };
 		20D33D2F18E547BB0062CC1A /* Euchre.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 20D33D2E18E547BB0062CC1A /* Euchre.1 */; };
 		20D33D3B18E5CA5E0062CC1A /* card.c in Sources */ = {isa = PBXBuildFile; fileRef = 20D33D3A18E5CA5E0062CC1A /* card.c */; };
@@ -45,33 +48,39 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		201CE03F1BF1A22A00B723B8 /* humanIO.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = humanIO.c; path = Euchre/humanIO.c; sourceTree = "<group>"; };
-		201CE0401BF1A22A00B723B8 /* humanIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = humanIO.h; path = Euchre/humanIO.h; sourceTree = "<group>"; };
-		203E08BA1BF1CA990072565F /* IOsplitter.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = IOsplitter.c; path = Euchre/IOsplitter.c; sourceTree = "<group>"; };
-		203E08BB1BF1CA990072565F /* IOsplitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOsplitter.h; path = Euchre/IOsplitter.h; sourceTree = "<group>"; };
-		203E08BD1BF1E19D0072565F /* initZero.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = initZero.c; sourceTree = "<group>"; };
-		203E08BE1BF1E19D0072565F /* initZero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = initZero.h; sourceTree = "<group>"; };
-		203E08C01BF1E3AB0072565F /* deckOps.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = deckOps.c; sourceTree = "<group>"; };
-		203E08C11BF1E3AB0072565F /* deckOps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = deckOps.h; sourceTree = "<group>"; };
-		203E08C31BF1E4510072565F /* scoring.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = scoring.c; sourceTree = "<group>"; };
-		203E08C41BF1E4510072565F /* scoring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scoring.h; sourceTree = "<group>"; };
+		201CE03F1BF1A22A00B723B8 /* humanIO.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; name = humanIO.c; path = Euchre/humanIO.c; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.c; };
+		201CE0401BF1A22A00B723B8 /* humanIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = humanIO.h; path = Euchre/humanIO.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		203E08BA1BF1CA990072565F /* IOsplitter.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; name = IOsplitter.c; path = Euchre/IOsplitter.c; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.c; };
+		203E08BB1BF1CA990072565F /* IOsplitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = IOsplitter.h; path = Euchre/IOsplitter.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		203E08BD1BF1E19D0072565F /* initZero.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; path = initZero.c; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.c; };
+		203E08BE1BF1E19D0072565F /* initZero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = initZero.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		203E08C01BF1E3AB0072565F /* deckOps.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; path = deckOps.c; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.c; };
+		203E08C11BF1E3AB0072565F /* deckOps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = deckOps.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		203E08C31BF1E4510072565F /* scoring.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; path = scoring.c; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.c; };
+		203E08C41BF1E4510072565F /* scoring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = scoring.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		203E08CA1BF1F9140072565F /* test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = test; sourceTree = BUILT_PRODUCTS_DIR; };
-		20A786C31BFD4E8D00A8AEB0 /* table.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = table.h; sourceTree = "<group>"; };
-		20A786C41BFD4F8A00A8AEB0 /* setup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = setup.h; sourceTree = "<group>"; };
-		20A786C51BFD500000A8AEB0 /* menus.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = menus.c; sourceTree = "<group>"; };
-		20A786C61BFD500000A8AEB0 /* menus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = menus.h; sourceTree = "<group>"; };
-		20A786C81BFD9EBA00A8AEB0 /* numberTest.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = numberTest.c; path = test/numberTest.c; sourceTree = "<group>"; };
+		20432F771C070C3000165BB1 /* RULES (human-readable) */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "RULES (human-readable)"; sourceTree = "<group>"; };
+		20432F781C070C3E00165BB1 /* license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = license; sourceTree = "<group>"; };
+		20A786C31BFD4E8D00A8AEB0 /* table.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = table.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		20A786C41BFD4F8A00A8AEB0 /* setup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = setup.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		20A786C51BFD500000A8AEB0 /* menus.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; path = menus.c; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.c; };
+		20A786C61BFD500000A8AEB0 /* menus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = menus.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		20A786C81BFD9EBA00A8AEB0 /* numberTest.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; name = numberTest.c; path = test/numberTest.c; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.c; };
+		20A786CA1BFDAB4F00A8AEB0 /* help.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; path = help.c; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.c; };
+		20A786CB1BFDAB4F00A8AEB0 /* help.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = help.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		20A786CD1BFEAEBB00A8AEB0 /* mathemagics.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; path = mathemagics.c; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.c; };
+		20A786CE1BFEAEBB00A8AEB0 /* mathemagics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = mathemagics.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		20D33D2918E547BB0062CC1A /* Euchre */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Euchre; sourceTree = BUILT_PRODUCTS_DIR; };
-		20D33D2C18E547BB0062CC1A /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = main.c; path = Euchre/main.c; sourceTree = "<group>"; };
+		20D33D2C18E547BB0062CC1A /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; lineEnding = 0; name = main.c; path = Euchre/main.c; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.c; };
 		20D33D2E18E547BB0062CC1A /* Euchre.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; name = Euchre.1; path = Euchre/Euchre.1; sourceTree = "<group>"; };
-		20D33D3518E5BCAA0062CC1A /* shuffle.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = shuffle.c; sourceTree = "<group>"; };
-		20D33D3718E5C2890062CC1A /* shuffle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shuffle.h; sourceTree = "<group>"; };
-		20D33D3918E5C9DF0062CC1A /* card.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = card.h; sourceTree = "<group>"; };
-		20D33D3A18E5CA5E0062CC1A /* card.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = card.c; sourceTree = "<group>"; };
-		20D33D3C18E928FE0062CC1A /* euchre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = euchre.h; sourceTree = "<group>"; };
-		20D33D3E18E929200062CC1A /* euchre.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = euchre.c; sourceTree = "<group>"; };
-		20D33D4218E92AED0062CC1A /* ai.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ai.h; path = Euchre/ai.h; sourceTree = "<group>"; };
-		20D33D4318E92AF50062CC1A /* ai.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ai.c; path = Euchre/ai.c; sourceTree = "<group>"; };
+		20D33D3518E5BCAA0062CC1A /* shuffle.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; path = shuffle.c; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.c; };
+		20D33D3718E5C2890062CC1A /* shuffle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = shuffle.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		20D33D3918E5C9DF0062CC1A /* card.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = card.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		20D33D3A18E5CA5E0062CC1A /* card.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; path = card.c; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.c; };
+		20D33D3C18E928FE0062CC1A /* euchre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = euchre.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		20D33D3E18E929200062CC1A /* euchre.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; path = euchre.c; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.c; };
+		20D33D4218E92AED0062CC1A /* ai.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = ai.h; path = Euchre/ai.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		20D33D4318E92AF50062CC1A /* ai.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; name = ai.c; path = Euchre/ai.c; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.c; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,26 +104,40 @@
 		203E08B91BF1A3390072565F /* Controls */ = {
 			isa = PBXGroup;
 			children = (
-				20A786C51BFD500000A8AEB0 /* menus.c */,
-				20A786C61BFD500000A8AEB0 /* menus.h */,
 				20D33D4318E92AF50062CC1A /* ai.c */,
 				20D33D4218E92AED0062CC1A /* ai.h */,
+				20A786CA1BFDAB4F00A8AEB0 /* help.c */,
+				20A786CB1BFDAB4F00A8AEB0 /* help.h */,
 				201CE03F1BF1A22A00B723B8 /* humanIO.c */,
 				201CE0401BF1A22A00B723B8 /* humanIO.h */,
 				203E08BA1BF1CA990072565F /* IOsplitter.c */,
 				203E08BB1BF1CA990072565F /* IOsplitter.h */,
+				20A786C51BFD500000A8AEB0 /* menus.c */,
+				20A786C61BFD500000A8AEB0 /* menus.h */,
 			);
 			name = Controls;
+			sourceTree = "<group>";
+		};
+		20432F7B1C070C5F00165BB1 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				20432F781C070C3E00165BB1 /* license */,
+				20A786CD1BFEAEBB00A8AEB0 /* mathemagics.c */,
+				20A786CE1BFEAEBB00A8AEB0 /* mathemagics.h */,
+				20A786C81BFD9EBA00A8AEB0 /* numberTest.c */,
+				20432F771C070C3000165BB1 /* RULES (human-readable) */,
+			);
+			name = Other;
 			sourceTree = "<group>";
 		};
 		20D33D2018E547BA0062CC1A = {
 			isa = PBXGroup;
 			children = (
-				20A786C81BFD9EBA00A8AEB0 /* numberTest.c */,
 				203E08B91BF1A3390072565F /* Controls */,
 				20D33D2E18E547BB0062CC1A /* Euchre.1 */,
 				20D33D2B18E547BB0062CC1A /* EuchreCore */,
 				20D33D2C18E547BB0062CC1A /* main.c */,
+				20432F7B1C070C5F00165BB1 /* Other */,
 				20D33D2A18E547BB0062CC1A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -138,14 +161,14 @@
 				203E08C11BF1E3AB0072565F /* deckOps.h */,
 				20D33D3E18E929200062CC1A /* euchre.c */,
 				20D33D3C18E928FE0062CC1A /* euchre.h */,
-				20A786C41BFD4F8A00A8AEB0 /* setup.h */,
-				20A786C31BFD4E8D00A8AEB0 /* table.h */,
 				203E08BD1BF1E19D0072565F /* initZero.c */,
 				203E08BE1BF1E19D0072565F /* initZero.h */,
 				203E08C31BF1E4510072565F /* scoring.c */,
 				203E08C41BF1E4510072565F /* scoring.h */,
+				20A786C41BFD4F8A00A8AEB0 /* setup.h */,
 				20D33D3518E5BCAA0062CC1A /* shuffle.c */,
 				20D33D3718E5C2890062CC1A /* shuffle.h */,
+				20A786C31BFD4E8D00A8AEB0 /* table.h */,
 			);
 			name = EuchreCore;
 			path = Euchre;
@@ -226,6 +249,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				20A786C91BFD9EBA00A8AEB0 /* numberTest.c in Sources */,
+				20A786D01BFEAEBB00A8AEB0 /* mathemagics.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,6 +257,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20A786CC1BFDAB4F00A8AEB0 /* help.c in Sources */,
 				20D33D3F18E929200062CC1A /* euchre.c in Sources */,
 				203E08C51BF1E4510072565F /* scoring.c in Sources */,
 				20D33D4518E92DC30062CC1A /* shuffle.c in Sources */,
@@ -243,6 +268,7 @@
 				20D33D2D18E547BB0062CC1A /* main.c in Sources */,
 				20D33D3B18E5CA5E0062CC1A /* card.c in Sources */,
 				20D33D4418E92AF50062CC1A /* ai.c in Sources */,
+				20A786CF1BFEAEBB00A8AEB0 /* mathemagics.c in Sources */,
 				203E08BF1BF1E19D0072565F /* initZero.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
