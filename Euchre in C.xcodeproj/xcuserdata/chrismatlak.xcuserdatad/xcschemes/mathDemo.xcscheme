@@ -17,7 +17,7 @@
                BlueprintIdentifier = "203E08C91BF1F9140072565F"
                BuildableName = "test"
                BlueprintName = "test"
-               ReferencedContainer = "container:Euchre.xcodeproj">
+               ReferencedContainer = "container:Euchre in C.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
             BlueprintIdentifier = "203E08C91BF1F9140072565F"
             BuildableName = "test"
             BlueprintName = "test"
-            ReferencedContainer = "container:Euchre.xcodeproj">
+            ReferencedContainer = "container:Euchre in C.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -58,7 +58,7 @@
             BlueprintIdentifier = "203E08C91BF1F9140072565F"
             BuildableName = "test"
             BlueprintName = "test"
-            ReferencedContainer = "container:Euchre.xcodeproj">
+            ReferencedContainer = "container:Euchre in C.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -77,7 +77,7 @@
             BlueprintIdentifier = "203E08C91BF1F9140072565F"
             BuildableName = "test"
             BlueprintName = "test"
-            ReferencedContainer = "container:Euchre.xcodeproj">
+            ReferencedContainer = "container:Euchre in C.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

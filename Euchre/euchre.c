@@ -147,6 +147,8 @@ void set_bets(int winningPlayerLoc, int winningBet) {
 
 
 int stick_dealer(int dealer) {
+	if (playerList[dealer].AI == 0)
+		print_hand(playerList[dealer]);
     if (dealer%2!=0) {
         betNS = 6;
     } else {

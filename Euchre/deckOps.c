@@ -14,19 +14,18 @@ void deal() {
 	for (int i=0; i<5; i++) {
 		bids[i] = 0;
 	}
-	
 	make_double_euchre_deck(euchreDeck);
 	shuffle_deck();
+	
 	int k = 0;
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 12; j++) {
-			playerList[i].hand[j].colour = euchreDeck[k].colour;
-			playerList[i].hand[j].rank = euchreDeck[k].rank;
+			playerList[i].hand[j] = euchreDeck[k];
 			k++;
 		}
-		sort_hand(playerList[i].hand,12);
+		sort_hand(playerList[i].hand, 12);
 		playerList[i].tricks = 0;
-		generate_bid_list(playerList[i],i);
+		generate_bid_list(playerList[i], i);
 	}
 }
 
@@ -62,11 +61,9 @@ void make_euchre_deck(card_t euchreDeck[]) {
 	}
 }
 
+// redirect to hand-specific function
 void print_hand(player_t player) {
-	for (int i = 0; i < 12; i++) {
-		show_card(player.hand[i], trumpSuit);
-		printf("\t");
-	}
+	print_a_hand(player.hand, 12, trumpSuit);
 }
 
 void play_card(int player, int cardLoc, int lead) {
@@ -80,6 +77,7 @@ void play_card(int player, int cardLoc, int lead) {
 	playerList[player].hand[11] = make_card(BLANK, NONE);
 }
 
+// Can't move this to hand.c because it requires knowledge of the first card played for the trick
 int is_valid_card(card_t hand[], card_t test) {
 	// Don't play blank spaces
 	if (test.colour == BLANK || test.rank == NONE)
@@ -99,23 +97,6 @@ int is_valid_card(card_t hand[], card_t test) {
 	return 1;
 }
 
-void trump_hand(player_t player, suit_t trump) {
-	for (int j=0; j<12; j++) {
-		make_card_trump(player.hand[j], trump);
-	}
-	sort_hand(player.hand,12);
-	if (player.AI)
-		return;
-	
-	// Sort trump as if it's part of the rest of the same suit for humans
-	for (int j=0; j<12; j++) {
-		revert_card(player.hand[j], trump);
-	}
-	sort_hand(player.hand, 12);
-	for (int j=0; j<12; j++) {
-		make_card_trump(player.hand[j], trump);
-	}
-}
 
 void declare_trump(int trumpIn) {
 	// no one should have cards of type "trump" in their hand when trump is delcared
@@ -149,6 +130,26 @@ void declare_trump(int trumpIn) {
 	}
 	
 	for (int i=0; i<4; i++) {
-		trump_hand(playerList[i], trumpSuit);
+		//trump_hand(playerList[i].hand, 12, trumpSuit, !playerList[i].AI); // this doesn't seem to work, using brute force here
+		make_hand_trump(i, trumpSuit);
+	}
+}
+
+// Because the hand.c implementation isn't working
+void make_hand_trump(int playerID, suit_t trump) {
+	for (int j=0; j<12; j++) {
+		playerList[playerID].hand[j] = make_card_trump(playerList[playerID].hand[j], trumpSuit);
+	}
+	sort_hand(playerList[playerID].hand, 12);
+	if (playerList[playerID].AI)
+		return;
+	
+	// Human-like sorting
+	for (int j=0; j<12; j++) {
+		playerList[playerID].hand[j] = revert_card(playerList[playerID].hand[j], trumpSuit);
+	}
+	sort_hand(playerList[playerID].hand, 12);
+	for (int j=0; j<12; j++) {
+		playerList[playerID].hand[j] = make_card_trump(playerList[playerID].hand[j], trumpSuit);
 	}
 }
