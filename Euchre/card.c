@@ -20,8 +20,27 @@ char *print_card(card_t card, suit_t trumpSuit) {
 	value_t dspVal = card.rank;
 	if (card.colour == TRUMP) {
 		outSuit = trumpSuit;
-		if ((card.rank == LEFT || card.rank == RIGHT) && trumpSuit != TRUMP)
+		if (card.rank == LEFT || card.rank == RIGHT)
 			dspVal = JACK;
+		if (card.rank == LEFT) {
+			switch (trumpSuit) {
+				case CLUBS:
+					outSuit = SPADES;
+					break;
+				case DIAMONDS:
+					outSuit = HEARTS;
+					break;
+				case SPADES:
+					outSuit = CLUBS;
+					break;
+				case HEARTS:
+					outSuit = DIAMONDS;
+					break;
+					
+				default:
+					break;
+			}
+		}
 	}
     sprintf(test, "%s%s", show_rank(dspVal), show_suit(outSuit));
     return test;
@@ -73,26 +92,20 @@ int compare_card_c(const card_t a, const card_t b, int trumpGame, int LoWin) {
     int r = a.rank - b.rank;
 	if (LoWin)
 		r = -r;
-    if (s == 0)
-        return r;
-    else
-        return s;
-	return -420; // this should never happen
+	return s == 0 ? r : s;
 }
 
 /*	Returns if a card is following a certain suit
-	Trump is assumed to follow suit at all times*/
+	Trump is assumed to follow suit at all times
+ */
 int follow_suit(const card_t card, const suit_t checkSuit) {
-	if (card.colour == checkSuit || card.colour == TRUMP)
-		return 1;
-	else
-		return 0;
-	return 899;
+	return (card.colour == checkSuit || card.colour == TRUMP) ? 1 : 0;
 }
 
 int compare_suit(const card_t a, const card_t b) {
     return a.colour - b.colour;
 }
+
 int compare_rank(const card_t a, const card_t b) {
     return a.rank - b.rank;
 }
@@ -162,6 +175,7 @@ char *show_rank(value_t value) {
             break;
     }
 }
+
 char *show_suit(suit_t colour) {
     switch (colour) {
         case JOKER:
@@ -191,6 +205,7 @@ char *show_suit(suit_t colour) {
             break;
     }
 }
+
 char *display_rank(value_t value) {
     switch (value) {
         case NONE:
@@ -250,6 +265,7 @@ char *display_rank(value_t value) {
             break;
     }
 }
+
 char *display_suit(suit_t colour) {
     switch (colour) {
         case JOKER:
@@ -280,53 +296,50 @@ char *display_suit(suit_t colour) {
     }
 }
 
-void make_trump(card_t card) {
-    card.colour = TRUMP;
-}
-
-void sort_hand(card_t hand[], int numberOfCards) {
-	int cardSize = sizeof(card_t);
-	qsort(hand, numberOfCards, cardSize, compare_card);
+card_t to_trump(card_t card) {
+	return make_card(TRUMP, card.rank);
 }
 
 card_t blank_card() {
 	return make_card(BLANK, NONE);
 }
 
-void revert_card(card_t card, suit_t trumpSuit) {
-	if (card.colour == TRUMP)
-		card.colour = trumpSuit;
+card_t revert_card(card_t card, suit_t trumpSuit) {
+	return (card.colour == TRUMP) ? make_card(trumpSuit, card.rank) : card; // keep the left & right as left & right instead of jacks
 }
 
-void make_card_trump(card_t card, suit_t trumpSuit) {
+card_t make_card_trump(card_t card, suit_t trumpSuit) {
+	suit_t outSuit = card.colour;
+	value_t outVal = card.rank;
+	
 	if (card.colour == trumpSuit) {
-		card.colour = TRUMP;
+		outSuit = TRUMP;
 		if (card.rank == JACK)
-			card.rank = RIGHT;
+			outVal = RIGHT;
 	} else if (card.rank == JACK) {
 		switch (trumpSuit) {
 			case CLUBS:
 				if (card.colour == SPADES) {
-					card.colour = TRUMP;
-					card.rank = LEFT;
+					outSuit = TRUMP;
+					outVal = LEFT;
 				}
 				break;
 			case DIAMONDS:
 				if (card.colour == HEARTS) {
-					card.colour = TRUMP;
-					card.rank = LEFT;
+					outSuit = TRUMP;
+					outVal = LEFT;
 				}
 				break;
 			case SPADES:
 				if (card.colour == CLUBS) {
-					card.colour = TRUMP;
-					card.rank = LEFT;
+					outSuit = TRUMP;
+					outVal = LEFT;
 				}
 				break;
 			case HEARTS:
 				if (card.colour == DIAMONDS) {
-					card.colour = TRUMP;
-					card.rank = LEFT;
+					outSuit = TRUMP;
+					outVal = LEFT;
 				}
 				break;
 				
@@ -335,6 +348,8 @@ void make_card_trump(card_t card, suit_t trumpSuit) {
 				break;
 		}
 	}
+	
+	return make_card(outSuit, outVal);
 }
 
 char * display_trump(int trump) {
