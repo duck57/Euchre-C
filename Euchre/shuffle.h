@@ -2,19 +2,20 @@
 //  shuffle.h
 //  Euchre
 //
-//  Created by Chris Matlak on 3/28/14.
-//  Copyright (c) 2014 TimmyJ_NET. All rights reserved.
+//  Created by Chris J.M. on 3/28/14.
+//  Copyright (c) 2014 Euchre US!. 2-clause BSD.
 //
 
 #ifndef Euchre_shuffle_h
 #define Euchre_shuffle_h
 
 #include <time.h>
-#include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
+#include "mathemagics.h"
 
 void shuffle(void *array, size_t n, size_t size);
-int mod(int a, int b);
+void h(double time);
 
 #define NELEMS(x)  (sizeof(x) / sizeof(x[0]))
 #define foo4random() (arc4random() % ((unsigned)RAND_MAX + 1))

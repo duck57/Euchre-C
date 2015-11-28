@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "20D33D2818E547BA0062CC1A"
-               BuildableName = "Euchre"
-               BlueprintName = "Euchre"
-               ReferencedContainer = "container:Euchre.xcodeproj">
+               BuildableName = "Euchre in C"
+               BlueprintName = "Euchre in C"
+               ReferencedContainer = "container:Euchre in C.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "20D33D2818E547BA0062CC1A"
-            BuildableName = "Euchre"
-            BlueprintName = "Euchre"
-            ReferencedContainer = "container:Euchre.xcodeproj">
+            BuildableName = "Euchre in C"
+            BlueprintName = "Euchre in C"
+            ReferencedContainer = "container:Euchre in C.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "20D33D2818E547BA0062CC1A"
-            BuildableName = "Euchre"
-            BlueprintName = "Euchre"
-            ReferencedContainer = "container:Euchre.xcodeproj">
+            BuildableName = "Euchre in C"
+            BlueprintName = "Euchre in C"
+            ReferencedContainer = "container:Euchre in C.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -75,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "20D33D2818E547BA0062CC1A"
-            BuildableName = "Euchre"
-            BlueprintName = "Euchre"
-            ReferencedContainer = "container:Euchre.xcodeproj">
+            BuildableName = "Euchre in C"
+            BlueprintName = "Euchre in C"
+            ReferencedContainer = "container:Euchre in C.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

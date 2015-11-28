@@ -4,12 +4,17 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Euchre Test.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 		<key>Euchre.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
-		<key>test.xcscheme</key>
+		<key>mathDemo.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>1</integer>
@@ -18,6 +23,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>203E08C91BF1F9140072565F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>208FEE191C09AB0000D2960A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
