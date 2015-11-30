@@ -30,10 +30,18 @@ int score_trick(int lead) {
 void score_hand() {
 	if (betNS == 0) {
 		hand_score_update(playerList[0], playerList[2], betEW);
-		if (playerList[0].tricks + playerList[2].tricks < betEW)
-			scoreEW = scoreEW - betEW;
-		else
-			scoreEW = scoreEW + playerList[0].tricks + playerList[2].tricks + 2;
+		if (playerList[0].tricks + playerList[2].tricks < betEW) {
+			if (alone)
+				scoreEW -= 18;
+			else
+				scoreEW -= betEW;
+		}
+		else {
+			if (alone)
+				scoreEW += 24;
+				else
+				scoreEW += playerList[0].tricks + playerList[2].tricks + 2;
+		}
 	} else {
 		hand_score_update(playerList[1], playerList[3], betNS);
 		if (playerList[1].tricks + playerList[3].tricks < betNS)

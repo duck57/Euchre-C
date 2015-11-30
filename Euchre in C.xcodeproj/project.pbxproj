@@ -27,8 +27,11 @@
 		20D33D2F18E547BB0062CC1A /* Euchre.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 20D33D2E18E547BB0062CC1A /* Euchre.1 */; };
 		20D33D3B18E5CA5E0062CC1A /* card.c in Sources */ = {isa = PBXBuildFile; fileRef = 20D33D3A18E5CA5E0062CC1A /* card.c */; };
 		20D33D3F18E929200062CC1A /* euchre.c in Sources */ = {isa = PBXBuildFile; fileRef = 20D33D3E18E929200062CC1A /* euchre.c */; };
-		20D33D4418E92AF50062CC1A /* ai.c in Sources */ = {isa = PBXBuildFile; fileRef = 20D33D4318E92AF50062CC1A /* ai.c */; };
 		20D33D4518E92DC30062CC1A /* shuffle.c in Sources */ = {isa = PBXBuildFile; fileRef = 20D33D3518E5BCAA0062CC1A /* shuffle.c */; };
+		20F204E61C0C2294002DA5DE /* bet.c in Sources */ = {isa = PBXBuildFile; fileRef = 20F204E41C0C2294002DA5DE /* bet.c */; };
+		20F204EA1C0C28A3002DA5DE /* cardSelect.c in Sources */ = {isa = PBXBuildFile; fileRef = 20F204E81C0C28A3002DA5DE /* cardSelect.c */; };
+		20F204ED1C0C2AA7002DA5DE /* call.c in Sources */ = {isa = PBXBuildFile; fileRef = 20F204EB1C0C2AA7002DA5DE /* call.c */; };
+		20F204F01C0C2B24002DA5DE /* bid.c in Sources */ = {isa = PBXBuildFile; fileRef = 20F204EE1C0C2B24002DA5DE /* bid.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -102,7 +105,14 @@
 		20D33D3C18E928FE0062CC1A /* euchre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = euchre.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		20D33D3E18E929200062CC1A /* euchre.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; path = euchre.c; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.c; };
 		20D33D4218E92AED0062CC1A /* ai.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = ai.h; path = IO/ai.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		20D33D4318E92AF50062CC1A /* ai.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; name = ai.c; path = IO/ai.c; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.c; };
+		20F204E41C0C2294002DA5DE /* bet.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = bet.c; path = IO/AI/bet.c; sourceTree = "<group>"; };
+		20F204E51C0C2294002DA5DE /* bet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bet.h; path = IO/AI/bet.h; sourceTree = "<group>"; };
+		20F204E81C0C28A3002DA5DE /* cardSelect.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cardSelect.c; path = IO/AI/cardSelect.c; sourceTree = "<group>"; };
+		20F204E91C0C28A3002DA5DE /* cardSelect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cardSelect.h; path = IO/AI/cardSelect.h; sourceTree = "<group>"; };
+		20F204EB1C0C2AA7002DA5DE /* call.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = call.c; path = IO/AI/call.c; sourceTree = "<group>"; };
+		20F204EC1C0C2AA7002DA5DE /* call.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = call.h; path = IO/AI/call.h; sourceTree = "<group>"; };
+		20F204EE1C0C2B24002DA5DE /* bid.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = bid.c; path = IO/AI/bid.c; sourceTree = "<group>"; };
+		20F204EF1C0C2B24002DA5DE /* bid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bid.h; path = IO/AI/bid.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,16 +143,10 @@
 		203E08B91BF1A3390072565F /* Controls */ = {
 			isa = PBXGroup;
 			children = (
-				20D33D4318E92AF50062CC1A /* ai.c */,
-				20D33D4218E92AED0062CC1A /* ai.h */,
-				20A786CA1BFDAB4F00A8AEB0 /* help.c */,
-				20A786CB1BFDAB4F00A8AEB0 /* help.h */,
-				201CE03F1BF1A22A00B723B8 /* humanIO.c */,
-				201CE0401BF1A22A00B723B8 /* humanIO.h */,
+				20F204E71C0C2299002DA5DE /* AI */,
+				20F204F11C0C31A7002DA5DE /* Human */,
 				203E08BA1BF1CA990072565F /* IOsplitter.c */,
 				203E08BB1BF1CA990072565F /* IOsplitter.h */,
-				20A786C51BFD500000A8AEB0 /* menus.c */,
-				20A786C61BFD500000A8AEB0 /* menus.h */,
 			);
 			name = Controls;
 			sourceTree = "<group>";
@@ -198,24 +202,53 @@
 			isa = PBXGroup;
 			children = (
 				20D33D3A18E5CA5E0062CC1A /* card.c */,
-				20D33D3918E5C9DF0062CC1A /* card.h */,
 				203E08C01BF1E3AB0072565F /* deckOps.c */,
-				203E08C11BF1E3AB0072565F /* deckOps.h */,
 				20D33D3E18E929200062CC1A /* euchre.c */,
-				20D33D3C18E928FE0062CC1A /* euchre.h */,
 				20432F7C1C098FE200165BB1 /* hand.c */,
-				20432F7D1C098FE200165BB1 /* hand.h */,
 				203E08BD1BF1E19D0072565F /* initZero.c */,
-				203E08BE1BF1E19D0072565F /* initZero.h */,
 				203E08C31BF1E4510072565F /* scoring.c */,
+				20D33D3518E5BCAA0062CC1A /* shuffle.c */,
+				20D33D3918E5C9DF0062CC1A /* card.h */,
+				203E08C11BF1E3AB0072565F /* deckOps.h */,
+				20D33D3C18E928FE0062CC1A /* euchre.h */,
+				20432F7D1C098FE200165BB1 /* hand.h */,
+				203E08BE1BF1E19D0072565F /* initZero.h */,
 				203E08C41BF1E4510072565F /* scoring.h */,
 				20A786C41BFD4F8A00A8AEB0 /* setup.h */,
-				20D33D3518E5BCAA0062CC1A /* shuffle.c */,
 				20D33D3718E5C2890062CC1A /* shuffle.h */,
 				20A786C31BFD4E8D00A8AEB0 /* table.h */,
 			);
 			name = EuchreCore;
 			path = Euchre;
+			sourceTree = "<group>";
+		};
+		20F204E71C0C2299002DA5DE /* AI */ = {
+			isa = PBXGroup;
+			children = (
+				20F204E41C0C2294002DA5DE /* bet.c */,
+				20F204EE1C0C2B24002DA5DE /* bid.c */,
+				20F204EB1C0C2AA7002DA5DE /* call.c */,
+				20F204E81C0C28A3002DA5DE /* cardSelect.c */,
+				20D33D4218E92AED0062CC1A /* ai.h */,
+				20F204E51C0C2294002DA5DE /* bet.h */,
+				20F204EF1C0C2B24002DA5DE /* bid.h */,
+				20F204EC1C0C2AA7002DA5DE /* call.h */,
+				20F204E91C0C28A3002DA5DE /* cardSelect.h */,
+			);
+			name = AI;
+			sourceTree = "<group>";
+		};
+		20F204F11C0C31A7002DA5DE /* Human */ = {
+			isa = PBXGroup;
+			children = (
+				20A786CA1BFDAB4F00A8AEB0 /* help.c */,
+				201CE03F1BF1A22A00B723B8 /* humanIO.c */,
+				20A786C51BFD500000A8AEB0 /* menus.c */,
+				20A786CB1BFDAB4F00A8AEB0 /* help.h */,
+				201CE0401BF1A22A00B723B8 /* humanIO.h */,
+				20A786C61BFD500000A8AEB0 /* menus.h */,
+			);
+			name = Human;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,7 +311,7 @@
 		20D33D2118E547BA0062CC1A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				CLASSPREFIX = c_euchre;
+				CLASSPREFIX = "";
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Euchre US!";
 				TargetAttributes = {
@@ -337,16 +370,19 @@
 			files = (
 				20A786CC1BFDAB4F00A8AEB0 /* help.c in Sources */,
 				20D33D3F18E929200062CC1A /* euchre.c in Sources */,
+				20F204ED1C0C2AA7002DA5DE /* call.c in Sources */,
+				20F204F01C0C2B24002DA5DE /* bid.c in Sources */,
 				203E08C51BF1E4510072565F /* scoring.c in Sources */,
 				20D33D4518E92DC30062CC1A /* shuffle.c in Sources */,
 				201CE0411BF1A22A00B723B8 /* humanIO.c in Sources */,
 				203E08BC1BF1CA990072565F /* IOsplitter.c in Sources */,
 				203E08C21BF1E3AB0072565F /* deckOps.c in Sources */,
+				20F204EA1C0C28A3002DA5DE /* cardSelect.c in Sources */,
 				20A786C71BFD500000A8AEB0 /* menus.c in Sources */,
 				20D33D2D18E547BB0062CC1A /* main.c in Sources */,
 				20D33D3B18E5CA5E0062CC1A /* card.c in Sources */,
-				20D33D4418E92AF50062CC1A /* ai.c in Sources */,
 				20A786CF1BFEAEBB00A8AEB0 /* mathemagics.c in Sources */,
+				20F204E61C0C2294002DA5DE /* bet.c in Sources */,
 				20432F7E1C098FE200165BB1 /* hand.c in Sources */,
 				203E08BF1BF1E19D0072565F /* initZero.c in Sources */,
 			);
@@ -511,6 +547,7 @@
 				208FEE201C09AB0000D2960A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		20D33D2418E547BA0062CC1A /* Build configuration list for PBXProject "Euchre in C" */ = {
 			isa = XCConfigurationList;

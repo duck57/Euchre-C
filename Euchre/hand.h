@@ -21,3 +21,4 @@ void print_a_hand(card_t hand[], int handSize, suit_t trumpSuit);
 void sort_player_hand(card_t hand[], int numberOfCards, int humanTrumpSorting, suit_t trump);
 void hand_to_trump(card_t hand[], int handSize, suit_t trumpSuit);
 void revert_hand(card_t hand[], int handSize, suit_t trumpSuit);
+void copy_hand(card_t src[], card_t dst[], int hand_size);

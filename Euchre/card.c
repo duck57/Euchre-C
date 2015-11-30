@@ -296,50 +296,51 @@ char *display_suit(suit_t colour) {
     }
 }
 
-card_t to_trump(card_t card) {
-	return make_card(TRUMP, card.rank);
+// simply changes the suit, used for display and human-usable sorting
+card_t to_trump(card_t *card) {
+	card->colour = TRUMP;
+	return *card;
 }
 
 card_t blank_card() {
 	return make_card(BLANK, NONE);
 }
 
-card_t revert_card(card_t card, suit_t trumpSuit) {
-	return (card.colour == TRUMP) ? make_card(trumpSuit, card.rank) : card; // keep the left & right as left & right instead of jacks
+card_t revert_card(card_t *card, suit_t trumpSuit) {
+	// keep the left & right as left & right instead of jacks
+	card->colour = trumpSuit;
+	return *card;
 }
 
-card_t make_card_trump(card_t card, suit_t trumpSuit) {
-	suit_t outSuit = card.colour;
-	value_t outVal = card.rank;
-	
-	if (card.colour == trumpSuit) {
-		outSuit = TRUMP;
-		if (card.rank == JACK)
-			outVal = RIGHT;
-	} else if (card.rank == JACK) {
+card_t make_card_trump(card_t *card, suit_t trumpSuit) {
+	if (card->colour == trumpSuit) {
+		card->colour = TRUMP;
+		if (card->rank == JACK)
+			card->rank = RIGHT;
+	} else if (card->rank == JACK) {
 		switch (trumpSuit) {
 			case CLUBS:
-				if (card.colour == SPADES) {
-					outSuit = TRUMP;
-					outVal = LEFT;
+				if (card->colour == SPADES) {
+					card->colour = TRUMP;
+					card->rank = LEFT;
 				}
 				break;
 			case DIAMONDS:
-				if (card.colour == HEARTS) {
-					outSuit = TRUMP;
-					outVal = LEFT;
+				if (card->colour == HEARTS) {
+					card->colour = TRUMP;
+					card->rank = LEFT;
 				}
 				break;
 			case SPADES:
-				if (card.colour == CLUBS) {
-					outSuit = TRUMP;
-					outVal = LEFT;
+				if (card->colour == CLUBS) {
+					card->colour = TRUMP;
+					card->rank = LEFT;
 				}
 				break;
 			case HEARTS:
-				if (card.colour == DIAMONDS) {
-					outSuit = TRUMP;
-					outVal = LEFT;
+				if (card->colour == DIAMONDS) {
+					card->colour = TRUMP;
+					card->rank = LEFT;
 				}
 				break;
 				
@@ -349,7 +350,7 @@ card_t make_card_trump(card_t card, suit_t trumpSuit) {
 		}
 	}
 	
-	return make_card(outSuit, outVal);
+	return *card;
 }
 
 char * display_trump(int trump) {

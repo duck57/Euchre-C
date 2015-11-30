@@ -9,7 +9,7 @@
 #include "help.h"
 
 void h_defaults() {
-	printf("\tThis is help about the defaults\n");
+	printf("\tDefault players are Amanda and Ben the computer team against Chris the human and Michelle.\n");
 }
 
 void h_name(int pPos) {

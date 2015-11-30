@@ -25,7 +25,7 @@ void deal() {
 		}
 		sort_hand(playerList[i].hand, 12);
 		playerList[i].tricks = 0;
-		generate_bid_list(playerList[i], i);
+		generate_bid_list(&playerList[i]);
 	}
 }
 
@@ -130,26 +130,6 @@ void declare_trump(int trumpIn) {
 	}
 	
 	for (int i=0; i<4; i++) {
-		//trump_hand(playerList[i].hand, 12, trumpSuit, !playerList[i].AI); // this doesn't seem to work, using brute force here
-		make_hand_trump(i, trumpSuit);
-	}
-}
-
-// Because the hand.c implementation isn't working
-void make_hand_trump(int playerID, suit_t trump) {
-	for (int j=0; j<12; j++) {
-		playerList[playerID].hand[j] = make_card_trump(playerList[playerID].hand[j], trumpSuit);
-	}
-	sort_hand(playerList[playerID].hand, 12);
-	if (playerList[playerID].AI)
-		return;
-	
-	// Human-like sorting
-	for (int j=0; j<12; j++) {
-		playerList[playerID].hand[j] = revert_card(playerList[playerID].hand[j], trumpSuit);
-	}
-	sort_hand(playerList[playerID].hand, 12);
-	for (int j=0; j<12; j++) {
-		playerList[playerID].hand[j] = make_card_trump(playerList[playerID].hand[j], trumpSuit);
+		trump_hand(playerList[i].hand, 12, trumpSuit, !playerList[i].AI);
 	}
 }

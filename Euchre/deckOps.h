@@ -10,10 +10,8 @@
 #define DeckOps_h
 
 #include <stdio.h>
-#include "shuffle.h"
 #include "table.h"
-#include "ai.h" // to allow for generating the bid array as part of the deal function
-#include "hand.h"
+#include "bid.h" // to allow for generating the bid array as part of the deal function
 
 void deal();
 void shuffle_deck();

@@ -24,10 +24,10 @@ void sort_player_hand(card_t hand[], int numberOfCards, int humanTrumpSorting, s
 	hand_to_trump(hand, numberOfCards, trump);
 }
 
-//this doesn't seem to work
+
 void trump_hand(card_t hand[], int handSize, suit_t trump, int humanTrumpSorting) {
 	for (int j=0; j<handSize; j++) {
-		make_card_trump(hand[j], trump);
+		make_card_trump(&hand[j], trump);
 	}
 	sort_player_hand(hand, handSize, 0, trump);
 }
@@ -42,12 +42,18 @@ void print_a_hand(card_t hand[], int handSize, suit_t trumpSuit) {
 
 void hand_to_trump(card_t hand[], int handSize, suit_t trumpSuit) {
 	for (int i=0; i<handSize; i++) {
-		hand[i] = make_card_trump(hand[i], trumpSuit);
+		hand[i] = make_card_trump(&hand[i], trumpSuit);
 	}
 }
 
 void revert_hand(card_t hand[], int handSize, suit_t trumpSuit) {
 	for (int i=0; i<handSize; i++) {
-		hand[i] = revert_card(hand[i], trumpSuit);
+		hand[i] = revert_card(&hand[i], trumpSuit);
+	}
+}
+
+void copy_hand(card_t src[], card_t dst[], int hand_size) {
+	for (int i=0; i<hand_size; i++) {
+		dst[i] = src[i];
 	}
 }

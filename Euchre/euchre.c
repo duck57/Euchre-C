@@ -13,6 +13,7 @@
 int maxPointsLost = 50;
 int allLoseCondition = -25;
 int victoryScore = 50;
+int shortcutEuchre = 1; // toggles whether teams that get euchred finish their hand.  Set to -1 to stop the short-cutting of a Loner
 
 // Default player names
 char *NORTH = "NORTH";
@@ -113,7 +114,7 @@ int get_bets(int dealer) {
         int playerBet = 0;
         if ((i-dealer)%4 == 0 && bids[bids[4]] < 6)
             return stick_dealer(dealer);
-		playerBet = pick_a_bet(playerList[i%4], bids[bids[4]]);
+		playerBet = pick_a_bet(&playerList[i%4], bids[bids[4]]);
 		if (playerBet == 24) {
 			printf("%s called a loner!\n", playerList[i%4].name);
 			return i%4; //end bidding once someone calls a loner

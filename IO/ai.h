@@ -6,24 +6,23 @@
 //  Copyright (c) 2014 Euchre US!. 2-clause BSD.
 //
 
+/*
+ AI CLASSES:
+ 2 - Calculates number of guaranteed tricks for bet, keeps track of remaining cards when deciding what to play, bets strategically
+ 1 - Simple look at hand when betting, plays the best card possible (while trying not to beat partner)
+ 0 - Human: see humanIO.c
+ -1 - random bid, trump, and card (valid card only)
+ -2 - random bid & trump, plays best (strategic) card
+ -3 - random bid & trump, plays highest valid card
+ -4 - random bid, but selects the best (stategic) trump and card
+ */
+
 #ifndef Euchre_ai_h
 #define Euchre_ai_h
 
-#include <stdio.h>
-#include "euchre.h"
-#include "deckOps.h"
-#include "table.h"
-
-
-void generate_bid_list(player_t computer, int computer_location);
-int choose_card(player_t computer);
-int choose_bet(player_t computer, int currentHibet);
-int choose_trump(player_t computer);
-void print_bids(player_t computer);
-int random_euchre_bet();
-int random_bidEuchre_trump();
-int play_random_card(player_t computer);
-void get_valid_cards(card_t hand[], int validCardAry[]);
-
+#include "bet.h"
+#include "bet.h"
+#include "call.h"
+#include "cardSelect.h"
 
 #endif

@@ -11,8 +11,10 @@
 
 #define NAME_LENGTH	23
 
-#include "card.h"
 #include <unistd.h>
+#include <stdio.h>
+
+#include "hand.h"
 
 typedef struct player_t {
 	card_t hand[12];
