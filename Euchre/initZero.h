@@ -6,6 +6,8 @@
 //  Copyright © 2015 Euchre US!. 2-clause BSD.
 //
 
+// Reset things
+
 #ifndef initZero_h
 #define initZero_h
 
@@ -14,7 +16,7 @@
 #include "table.h"
 #include "menus.h"
 
-void init_players();
+void init_players(const int defaultAI);
 void zero_players();
 void zero_trick();
 void zero_discard();

@@ -19,9 +19,7 @@ void zero_players() {
 }
 
 // If *only* these defaults are used (which shouldn't happen), it will be the normal AI with directional names
-void init_players() {
-	int defaultAI = 1;
-	
+void init_players(const int defaultAI) {	
 	// Amanda
 	strcpy(playerList[0].name, "EAST");
 	playerList[0].AI = defaultAI;
@@ -79,7 +77,7 @@ void zero_discard() {
 }
 
 void init_euchre() {
-	sec = 1.0; // change me to speed up autoplay games
+	sec = 0.2; // default pause between players (scaling factor)
 	greet();
 	set_players();
 }

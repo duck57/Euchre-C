@@ -12,7 +12,7 @@ void h_defaults() {
 	printf("\tDefault players are Amanda and Ben the computer team against Chris the human and Michelle.\n");
 }
 
-void h_name(int pPos) {
+void h_name(const int pPos) {
 	char *posName;
 	switch (pPos) {
 		case 0:

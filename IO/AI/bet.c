@@ -2,8 +2,8 @@
 //  bet.c
 //  Euchre in C
 //
-//  Created by Chris Matlak on 11/30/15.
-//  Copyright © 2015 Euchre US!. All rights reserved.
+//  Created by Chris J.M. on 11/30/15.
+//  Copyright © 2015 Euchre US!. 2-clause BSD.
 //
 
 #include "bet.h"
@@ -33,13 +33,14 @@ int random_euchre_bet() {
 }
 
 // This assumes the bidding has already been normalized
-int choose_bet(player_t computer, int currentHibet) {
+int choose_bet(player_t computer, const int currentHibet) {
 	h(0.123 * sec);
 	
 	if (computer.AI < 0)
 		return random_euchre_bet();
 	
-	printf("\t"); print_bids(computer); printf("\t%d\t", computer.bidList[6]);
+	if (debugAI)
+		printf("\t"); print_bids(computer); printf("\t%d\t", computer.bidList[6]);
 	
 	int testBet = computer.bidList[computer.bidList[6]];
 	if (testBet < 6)

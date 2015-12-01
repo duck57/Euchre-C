@@ -13,7 +13,7 @@
 
 void h_defaults();
 void h_autoplay();
-void h_name(int pPos);
+void h_name(const int pPos);
 void h_nombre();
 void h_AI_levels();
 void h_betting();

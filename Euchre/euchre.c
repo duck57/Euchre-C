@@ -14,6 +14,7 @@ int maxPointsLost = 50;
 int allLoseCondition = -25;
 int victoryScore = 50;
 int shortcutEuchre = 1; // toggles whether teams that get euchred finish their hand.  Set to -1 to stop the short-cutting of a Loner
+int maxGameLength = 99; // to pretent indefinitely-long AI matches
 
 // Default player names
 char *NORTH = "NORTH";
@@ -21,24 +22,33 @@ char *SOUTH = "SOUTH";
 char *EAST = "EAST";
 char *WEST = "WEST";
 
-void play_euchre() {
-	int hands = 1;
+// Returns the winning team
+int play_euchre() {
+	int hands = 0;
     dealer = random_int(3); // randomly assign the starting dealer
     while (score_in_range()) {
-		printf("Hand %d\n", hands);
-        play_hand(dealer);
-        dealer = (dealer+1)%4;
 		hands++;
+		printf("Hand %d\n", hands);
+        dealer = play_hand(dealer);
 		h(1.5 * sec);
+		if (hands > maxGameLength) {
+			printf("\n\nGame went too long.\n\n");
+			return -3 * UNINIT; // in case it's a 4-AI game that gets stuck
+		}
     }
     if (scoreNS < allLoseCondition && scoreEW < allLoseCondition) {
         printf("\n\nAfter %d hands, you all lose.\n\n", hands);
+		return -1;
     } else {
-        if (scoreNS > scoreEW)
+		if (scoreNS > scoreEW) {
 			victory_message(1, scoreNS, scoreEW, hands);
-        else
+			return 1;
+		} else {
 			victory_message(0, scoreEW, scoreNS, hands);
+			return 0;
+		}
     }
+	return UNINIT; // shold not happen
 }
 
 // winningTeam is 0 for East & West, 1 for North & South
@@ -73,7 +83,8 @@ int score_in_range() {
 	return 0;
 }
 
-void play_hand(int dealer) {
+// Returns the next dealer
+int play_hand(const int dealer) {
     deal();
     printf("Dealer: %s\t\tScores: NS %d\tEW %d\n", playerList[dealer].name, scoreNS, scoreEW);
 	
@@ -93,9 +104,12 @@ void play_hand(int dealer) {
 	
 	// scoring
 	score_hand();
+	
+	return (dealer+1)%4;
 }
 
-int play_trick(int lead) {
+// Returns the new lead
+int play_trick(const int lead) {
 	zero_trick();
     for (int p = lead; p < lead+4; p++) {
 		play_card(p%4, pick_a_card(playerList[p%4]), lead);
@@ -106,7 +120,8 @@ int play_trick(int lead) {
 	return score_trick(lead);
 }
 
-int get_bets(int dealer) {
+// Returns the location of the player who won the bidding
+int get_bets(const int dealer) {
     betEW = 0;
     betNS = 0;
     bids[4] = (dealer+1)%4;
@@ -117,6 +132,7 @@ int get_bets(int dealer) {
 		playerBet = pick_a_bet(&playerList[i%4], bids[bids[4]]);
 		if (playerBet == 24) {
 			printf("%s called a loner!\n", playerList[i%4].name);
+			alone = 1;
 			return i%4; //end bidding once someone calls a loner
 		}
         if (playerBet > bids[bids[4]]) {
@@ -131,7 +147,8 @@ int get_bets(int dealer) {
 	return bids[4];
 }
 
-void set_bets(int winningPlayerLoc, int winningBet) {
+
+void set_bets(const int winningPlayerLoc, int winningBet) {
 	printf("%s won a bet of %d and called ", playerList[winningPlayerLoc].name, winningBet); //trump listed later on
 	if (winningBet == 20) {
 		alone = 1;
@@ -147,7 +164,7 @@ void set_bets(int winningPlayerLoc, int winningBet) {
 }
 
 
-int stick_dealer(int dealer) {
+int stick_dealer(const int dealer) {
 	if (playerList[dealer].AI == 0)
 		print_hand(playerList[dealer]);
     if (dealer%2!=0) {

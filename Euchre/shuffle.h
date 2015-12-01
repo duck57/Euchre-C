@@ -14,8 +14,8 @@
 #include <unistd.h>
 #include "mathemagics.h"
 
-void shuffle(void *array, size_t n, size_t size);
-void h(double time);
+void shuffle(void *array, const size_t n, const size_t size);
+void h(const double time);
 
 #define NELEMS(x)  (sizeof(x) / sizeof(x[0]))
 #define foo4random() (arc4random() % ((unsigned)RAND_MAX + 1))

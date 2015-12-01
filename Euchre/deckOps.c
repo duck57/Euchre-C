@@ -61,12 +61,12 @@ void make_euchre_deck(card_t euchreDeck[]) {
 	}
 }
 
-// redirect to hand-specific function
+// redirect to generic function
 void print_hand(player_t player) {
 	print_a_hand(player.hand, 12, trumpSuit);
 }
 
-void play_card(int player, int cardLoc, int lead) {
+void play_card(const int player, const int cardLoc, const int lead) {
 	int pos = mod(player-lead, 4);
 	card_t cardPlayed = playerList[player].hand[cardLoc];
 	trick[pos] = cardPlayed;
@@ -77,28 +77,7 @@ void play_card(int player, int cardLoc, int lead) {
 	playerList[player].hand[11] = make_card(BLANK, NONE);
 }
 
-// Can't move this to hand.c because it requires knowledge of the first card played for the trick
-int is_valid_card(card_t hand[], card_t test) {
-	// Don't play blank spaces
-	if (test.colour == BLANK || test.rank == NONE)
-		return 0;
-	// Any card is good if it's your lead
-	if (trick[0].colour == BLANK || trick[0].rank == NONE)
-		return 1;
-	// It's a valid card if it matches suit with the lead
-	if (test.colour == trick[0].colour)
-		return 1;
-	// Checks that you don't have any cards matching the suit of the first card
-	for (int i = 0; i < 12; i++) {
-		if (hand[i].colour == trick[0].colour)
-			return 0;
-	}
-	// If everything else checks out…
-	return 1;
-}
-
-
-void declare_trump(int trumpIn) {
+void declare_trump(const int trumpIn) {
 	// no one should have cards of type "trump" in their hand when trump is delcared
 	// This may need to change if we use this is the base for non-Euchre games
 	trumpSuit = TRUMP;

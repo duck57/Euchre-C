@@ -25,15 +25,15 @@ int ERROR;
 
 void greet();
 void set_players();
-void setup_player(int playerNumber);
-int help(char *chk);
-void get_name(int playerNumber);
-void set_AI(int playerNumber);
-
-int getLine (char *prmpt, char *buff, size_t sz);
-int input(char *prompt, char *readBuff, size_t size);
-int get_number_in_range(char *prompt, int min, int max, int digits);
-
 int repeat();
+
+void setup_player(player_t *player);
+void set_name(player_t *player);
+void set_AI(player_t *player);
+
+int help(const char *chk);
+int getLine (const char *prmpt, char *buff, const size_t sz);
+int input(const char *prompt, char *readBuff, const size_t size);
+int get_number_in_range(const char *prompt, const int min, const int max, const int digits);
 
 #endif /* menus_h */

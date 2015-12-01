@@ -12,7 +12,7 @@
  * Only effective if N is much smaller than RAND_MAX;
  * if this may not be the case, use a better random
  * number generator. */
-void shuffle(void *array, size_t n, size_t size) {
+void shuffle(void *array, const size_t n, const size_t size) {
 	char tmp[size];
 	char *arr = array;
 	size_t stride = size * sizeof(char);
@@ -31,7 +31,7 @@ void shuffle(void *array, size_t n, size_t size) {
 }
 
 #define ONESEC	1000000
-void h(double time) {
+void h(const double time) {
 	struct timeval tv;
 	tv.tv_sec = (int)time;
 	tv.tv_usec = (int)(time*ONESEC)%ONESEC;

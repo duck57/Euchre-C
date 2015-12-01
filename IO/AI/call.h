@@ -2,8 +2,8 @@
 //  call.h
 //  Euchre in C
 //
-//  Created by Chris Matlak on 11/30/15.
-//  Copyright © 2015 Euchre US!. All rights reserved.
+//  Created by Chris J.M. on 11/30/15.
+//  Copyright © 2015 Euchre US!. 2-clause BSD.
 //
 
 #ifndef call_h

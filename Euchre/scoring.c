@@ -10,21 +10,17 @@
 
 
 int find_big_card() {
-	int bigCardLoc = 0;
-	for (int i=1; i<4; i++) {
-		if (follow_suit(trick[i],trick[0].colour) && (compare_card_c(trick[i], trick[bigCardLoc], 1, LoNo) > 0))
-			bigCardLoc = i;
-	}
-	return bigCardLoc;
+	return LoNo ? small_card_ofSuit(trick, 4, trick[0].colour) : biggest_card_ofSuit(trick, 4, trick[0].colour, 1);
 }
 
+// Input is the current lead, output is the new lead
 int score_trick(int lead) {
 	int bigCardLoc = find_big_card();
-	int newLead = (lead+bigCardLoc)%4;
-	playerList[newLead].tricks++;
+	lead = (lead+bigCardLoc)%4;
+	playerList[lead].tricks++;
 	zero_trick();
-	printf("%s won\n\n", playerList[newLead].name);
-	return newLead;
+	printf("%s won\n\n", playerList[lead].name);
+	return lead;
 }
 
 void score_hand() {
@@ -52,7 +48,7 @@ void score_hand() {
 	zero_discard();
 }
 
-void hand_score_update(player_t a, player_t b, int teamBet) {
+void hand_score_update(player_t a, player_t b, const int teamBet) {
 	printf("%s and %s bet %d and ", a.name, b.name, teamBet);
 	if (a.tricks+b.tricks<teamBet)
 		printf("got euchre'd!\n(%d and %d tricks, respectively)\n\n", a.tricks, b.tricks);

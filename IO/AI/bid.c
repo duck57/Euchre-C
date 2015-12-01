@@ -2,8 +2,8 @@
 //  bid.c
 //  Euchre in C
 //
-//  Created by Chris Matlak on 11/30/15.
-//  Copyright © 2015 Euchre US!. All rights reserved.
+//  Created by Chris J.M. on 11/30/15.
+//  Copyright © 2015 Euchre US!. 2-clause BSD.
 //
 
 // this is specifically the methods for generating the bid list
@@ -138,10 +138,14 @@ void analyse_cards(player_t *computer) {
 		}
 	}
 	
-	// normalize the bidding and write to the main array
+	// normalize the bidding
 	for (int i=0; i<6; i++) {
 		computer->bidList[i] = computer->bidList[i]/2 - 3;
 	}
+	// the computers seems really forward about calling NoTrump without this
+	// it may be the "best" call, but every hand being no trump makes for boring gameplay
+	computer->bidList[0] = computer->bidList[0] - 1;
+	computer->bidList[0] = computer->bidList[0] - 2;
 }
 
 

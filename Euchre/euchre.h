@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Euchre US!. 2-clause BSD.
 //
 
+// The main game logic and flow
+
 #ifndef Euchre_euchre_h
 #define Euchre_euchre_h
 
@@ -17,17 +19,17 @@
 
 
 // Function declarations
-void play_euchre();
-void play_hand(int dealer);
-int get_bets(int dealer);
-int stick_dealer(int dealer);
-int play_trick(int lead);
-void play_final_trick(int lead);
+int play_euchre();
+int play_hand(const int dealer);
+int get_bets(const int dealer);
+int stick_dealer(const int dealer);
+int play_trick(const int lead);
+void play_final_trick(const int lead);
 
-int make_euchre_trump(int trump);
+int make_euchre_trump(const int trump);
 int score_in_range();
-void set_bets(int winningPlayerLoc, int winningBet);
-void victory_message(int winningTeam, int winningScore, int loserScore, int numberOfHands);
+void set_bets(const int winningPlayerLoc, int winningBet);
+void victory_message(const int winningTeam, const int winningScore, const  int loserScore, int numberOfHands);
 
 
 #endif
