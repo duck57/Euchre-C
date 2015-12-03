@@ -80,19 +80,19 @@ int get_card(player_t human) {
 			cardLoc = UNINIT;
 		}
 		if (cardLoc == ENTERED * UNINIT || cardLoc == NOTHING * UNINIT)
-			return play_random_card(human);
+			return play_random_card(human.hand);
 		if (cardLoc == -1)
 			return choose_card(human);
-		if (is_valid_card(human.hand, human.hand[cardLoc]))
+		if (is_valid_card(human.hand, cardLoc, trick[0].colour, 12-trickNumber))
 			return cardLoc;
 		if (cardLoc > -1 && cardLoc < 12)
 			printf("\t\tYou must follow suit.");
 		cardLoc = UNINIT;
 	}
-	return play_random_card(human);
+	return play_random_card(human.hand);
 }
 
-void show_stats(int player) {
+void show_stats(const int player) {
 	if (player%2 != 0)
 		stat_text(player, betNS, betEW);
 	else
@@ -101,7 +101,7 @@ void show_stats(int player) {
 	print_hand(playerList[player]);
 }
 
-void stat_text(int playerNum, int yourBet, int theirBet) {
+void stat_text(const int playerNum, const int yourBet, const int theirBet) {
 	if (yourBet)
 		printf("\tWe bet %d", yourBet);
 	else

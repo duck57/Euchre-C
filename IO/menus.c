@@ -25,7 +25,7 @@ void greet() {
 void set_players() {
 	char oneChar[2];
 	int stat = UNINIT;
-	init_players();
+	init_players(0);
 	while (stat != 0) {
 		stat = input("Enter through this prompt to use default players.\nAnything else to go into setup: ", oneChar, sizeof(oneChar));
 		if (stat == 3) {
@@ -39,25 +39,53 @@ void set_players() {
 			stat = 0;
 		}
 	}
-	printf("\n\nPlayer Setup~~\n");
-	for (int i=0; i<4; i++) {
-		setup_player(i);
+	
+	switch (oneChar[0]) {
+ 		case '1':
+			printf("4 AI with strength 1.");
+			init_players(1);
+			debugAI = 1;
+			break;
+		case '2':
+			printf("4 AI with strength 2.");
+			init_players(2);
+			debugAI = 1;
+			break;
+		case '0':
+			printf("4 humans w/o special names.");
+			sec = 0; // no need to pause the screen with humans
+			break;
+		case 'r':
+			printf("4 random AI.");
+			init_players(-1);
+			break;
+		case 'R':
+			printf("4 random-bidding AI.");
+			init_players(-4);
+			break;
+		default:
+			printf("\n\nPlayer Setup~~\n");
+			for (int i=0; i<4; i++) {
+				setup_player(&playerList[i]);
+			}
+			sec = 1.0;
+			break;
 	}
-	printf("\n\n\n");
+	printf("\n\n\n\n");
 }
 
-int help(char *chk) {
+int help(const char *chk) {
 	return strcmp(chk, "H")==0 || strcmp(chk, "h")==0 || strcmp(chk, "?")==0;
 }
 
 
-void setup_player(int playerNumber) {
-	printf("\nSetup %s:\n", playerList[playerNumber].name);
-	get_name(playerNumber);
-	set_AI(playerNumber);
+void setup_player(player_t *player) {
+	printf("\nSetup %s:\n", player->name);
+	set_name(player);
+	set_AI(player);
 }
 
-void get_name(int playerNumber) {
+void set_name(player_t *player) {
 	char name[NAME_LENGTH];
 	int stat = UNINIT;
 	while (stat != 0) {
@@ -72,10 +100,10 @@ void get_name(int playerNumber) {
 				printf("\tName will be truncated.\n");
 				stat = 0; // but that's OK
 			case 3:
-				h_name(playerNumber);
+				h_name(player->pos);
 				break;
 			case 4:
-				printf("\tUsing default name %s.\n", playerList[playerNumber].name);
+				printf("\tUsing default name %s.\n", player->name);
 				return;
 				
 			default:
@@ -83,10 +111,10 @@ void get_name(int playerNumber) {
 				break;
 		}
 	}
-	strcpy(playerList[playerNumber].name, name);
+	strcpy(player->name, name);
 }
 
-void set_AI(int playerNumber) {
+void set_AI(player_t *player) {
 	int AIlevel = UNINIT;
 	while (AIlevel == UNINIT) {
 		AIlevel = get_number_in_range("AI strength: ", -4, 2, 2);
@@ -99,10 +127,10 @@ void set_AI(int playerNumber) {
 		if (AIlevel < -4)
 			AIlevel = UNINIT;
 	}
-	playerList[playerNumber].AI = AIlevel;
+	player->AI = AIlevel;
 }
 
-int get_number_in_range(char *prompt, int min, int max, int digits) {
+int get_number_in_range(const char *prompt, const int min, const int max, const int digits) {
 	char numberIN[digits+1]; //the +1 is to handle the return button and negative numbers
 	int stat = UNINIT;
 	int numberOut = UNINIT;
@@ -149,7 +177,7 @@ int get_number_in_range(char *prompt, int min, int max, int digits) {
 #define OK       0
 #define NO_INPUT 1
 #define TOO_LONG 2
-int getLine (char *prmpt, char *buff, size_t sz) {
+int getLine (const char *prmpt, char *buff, const size_t sz) {
 	int ch, extra;
 	
 	// Get line with buffer overrun protection.
@@ -174,16 +202,17 @@ int getLine (char *prmpt, char *buff, size_t sz) {
 	return OK;
 }
 
-// Wraps the input function and the help
+// Wraps the getLine function and the help-checking
 #define HELP	3
 #define ENTER	4
-int input(char *prompt, char *readBuff, size_t size) {
+int input(const char *prompt, char *readBuff, const size_t size) {
 	int stat = getLine(prompt, readBuff, size);
 	if (readBuff[0] == '\0')
 		return ENTER;
 	return help(readBuff) ? HELP : stat;
 }
 
+// Play again?
 int repeat() {
 	char inStr[2];
 	int stat = UNINIT;

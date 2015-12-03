@@ -11,8 +11,10 @@
 
 #define NAME_LENGTH	23
 
-#include "card.h"
 #include <unistd.h>
+#include <stdio.h>
+
+#include "hand.h"
 
 typedef struct player_t {
 	card_t hand[12];
@@ -29,7 +31,7 @@ player_t playerList[4];
 card_t euchreDeck[48];
 card_t trick[4];
 card_t discard[48]; // used for advanced AI
-int trickNumber;
+int trickNumber, debugAI;
 
 /*	Common-knowledge variables are declared here to prevent excessive parameterization
 	If it's not intended to be at all malleable, it's declared in euchre.c */

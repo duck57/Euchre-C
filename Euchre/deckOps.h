@@ -6,25 +6,21 @@
 //  Copyright © 2015 Euchre US!. 2-clause BSD.
 //
 
+// Deck operations that are (mostly) Euchre-specific
+
 #ifndef DeckOps_h
 #define DeckOps_h
 
 #include <stdio.h>
-#include "shuffle.h"
 #include "table.h"
-#include "ai.h" // to allow for generating the bid array as part of the deal function
-#include "hand.h"
+#include "bid.h" // to allow for generating the bid array as part of the deal function
 
 void deal();
 void shuffle_deck();
 void make_double_euchre_deck(card_t euchreDeck[]);
 void make_euchre_deck(card_t euchreDeck[]);
-void play_card(int player, int cardLoc, int lead);
-int is_valid_card(card_t hand[], card_t test);
-void declare_trump(int trumpIn);
+void play_card(const int player, const int cardLoc, const int lead);
+void declare_trump(const int trumpIn);
 void print_hand(player_t player);
-
-// Replacement functions for hand.c
-void make_hand_trump(int playerID, suit_t trump);
 
 #endif /* DeckOperations_h */

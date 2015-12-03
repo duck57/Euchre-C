@@ -9,12 +9,12 @@
 #include <stdio.h>
 #include "card.h"
 
-card_t make_card(suit_t suit, value_t value) {
+card_t make_card(const suit_t suit, const value_t value) {
     card_t temp = {suit, value};
     return temp;
 }
 
-char *print_card(card_t card, suit_t trumpSuit) {
+char *print_card(const card_t card, const suit_t trumpSuit) {
     char *test = malloc(sizeof(char[2]));
 	suit_t outSuit = card.colour;
 	value_t dspVal = card.rank;
@@ -46,11 +46,11 @@ char *print_card(card_t card, suit_t trumpSuit) {
     return test;
 }
 
-void show_card(card_t card, suit_t trumpSuit) {
+void show_card(const card_t card, const suit_t trumpSuit) {
     printf("%s", print_card(card, trumpSuit));
 }
 
-char *print_card_full(card_t card) {
+char *print_card_full(const card_t card) {
 	char *temp = malloc(44*sizeof(char));
 	switch (card.rank) {
 		case LEFT:
@@ -66,7 +66,7 @@ char *print_card_full(card_t card) {
 	return temp;
 }
 
-void show_card_full(card_t card) {
+void show_card_full(const card_t card) {
     printf("%s ", print_card_full(card));
 }
 
@@ -76,18 +76,14 @@ int compare_card(const void *a, const void *b) {
     card_t bd = *(card_t*)b;
 	int s = ad.colour - bd.colour;
     int r = ad.rank - bd.rank;
-    if (s == 0)
-        return r;
-    else
-        return s;
-	return 420;
+	return s == 0 ? r : s;
 }
 
 /* returns the difference (card a - card b)
 	positive values mean card a won; b wins if this returns a negative value */
-int compare_card_c(const card_t a, const card_t b, int trumpGame, int LoWin) {
+int compare_card_c(const card_t a, const card_t b, const int suitImportant, const int LoWin) {
 	int s = 0;
-	if (trumpGame)
+	if (suitImportant)
 		s = a.colour - b.colour; // compare suit first for trump-based games
     int r = a.rank - b.rank;
 	if (LoWin)
@@ -97,9 +93,10 @@ int compare_card_c(const card_t a, const card_t b, int trumpGame, int LoWin) {
 
 /*	Returns if a card is following a certain suit
 	Trump is assumed to follow suit at all times
+ 	Doesn't care about what other cards you have in your hand
  */
-int follow_suit(const card_t card, const suit_t checkSuit) {
-	return (card.colour == checkSuit || card.colour == TRUMP) ? 1 : 0;
+int follow_suit(const card_t card, const suit_t checkSuit, const int isTrumpGame) {
+	return (is_suit(card, checkSuit) || (is_trump(card) && isTrumpGame)) ? 1 : 0;
 }
 
 int compare_suit(const card_t a, const card_t b) {
@@ -116,7 +113,7 @@ card_t cast_card(const void *a) {
 }
 
 
-char *show_rank(value_t value) {
+char *show_rank(const value_t value) {
     switch (value) {
         case NONE:
             return " ";
@@ -176,7 +173,7 @@ char *show_rank(value_t value) {
     }
 }
 
-char *show_suit(suit_t colour) {
+char *show_suit(const suit_t colour) {
     switch (colour) {
         case JOKER:
             return "🃏";
@@ -206,7 +203,7 @@ char *show_suit(suit_t colour) {
     }
 }
 
-char *display_rank(value_t value) {
+char *display_rank(const value_t value) {
     switch (value) {
         case NONE:
             return "";
@@ -266,7 +263,7 @@ char *display_rank(value_t value) {
     }
 }
 
-char *display_suit(suit_t colour) {
+char *display_suit(const suit_t colour) {
     switch (colour) {
         case JOKER:
             return "Joker";
@@ -296,50 +293,67 @@ char *display_suit(suit_t colour) {
     }
 }
 
-card_t to_trump(card_t card) {
-	return make_card(TRUMP, card.rank);
+card_t change_rank(card_t *card, const value_t newRank) {
+	card->rank = newRank;
+	return *card;
+}
+
+card_t change_suit(card_t *card, const suit_t newSuit) {
+	card->colour = newSuit;
+	return *card;
+}
+
+// simply changes the suit, used for display and human-usable sorting
+card_t to_trump(card_t *card) {
+	change_suit(card, TRUMP);
+	return *card;
 }
 
 card_t blank_card() {
 	return make_card(BLANK, NONE);
 }
 
-card_t revert_card(card_t card, suit_t trumpSuit) {
-	return (card.colour == TRUMP) ? make_card(trumpSuit, card.rank) : card; // keep the left & right as left & right instead of jacks
+card_t erase_card(card_t *card) {
+	*card = blank_card();
+	return *card;
 }
 
-card_t make_card_trump(card_t card, suit_t trumpSuit) {
-	suit_t outSuit = card.colour;
-	value_t outVal = card.rank;
-	
-	if (card.colour == trumpSuit) {
-		outSuit = TRUMP;
-		if (card.rank == JACK)
-			outVal = RIGHT;
-	} else if (card.rank == JACK) {
+// keep the left & right as left & right instead of jacks (for human-sorted display)
+card_t revert_card(card_t *card, const suit_t trumpSuit) {
+	if (is_trump(*card))
+		change_suit(card, trumpSuit);
+	return *card;
+}
+
+card_t make_card_trump(card_t *card, const suit_t trumpSuit) {
+	if (is_suit(*card, trumpSuit)) {
+		to_trump(card);
+		if (is_rank(*card, JACK))
+			change_rank(card, RIGHT);
+	} else if (is_rank(*card, JACK)) {
 		switch (trumpSuit) {
 			case CLUBS:
-				if (card.colour == SPADES) {
-					outSuit = TRUMP;
-					outVal = LEFT;
+				if (is_suit(*card, SPADES)) {
+					to_trump(card);
+					change_rank(card, LEFT);
 				}
 				break;
 			case DIAMONDS:
-				if (card.colour == HEARTS) {
-					outSuit = TRUMP;
-					outVal = LEFT;
+				if (is_suit(*card, HEARTS)) {
+					to_trump(card);
+					change_rank(card, LEFT);
 				}
 				break;
 			case SPADES:
-				if (card.colour == CLUBS) {
-					outSuit = TRUMP;
-					outVal = LEFT;
+				if (is_suit(*card, CLUBS)) {
+					to_trump(card);
+					change_rank(card, LEFT);
 				}
 				break;
 			case HEARTS:
-				if (card.colour == DIAMONDS) {
-					outSuit = TRUMP;
-					outVal = LEFT;
+				if (is_suit(*card, DIAMONDS)) {
+					to_trump(card);
+					change_rank(card, LEFT);
 				}
 				break;
 				
@@ -349,10 +363,10 @@ card_t make_card_trump(card_t card, suit_t trumpSuit) {
 		}
 	}
 	
-	return make_card(outSuit, outVal);
+	return *card;
 }
 
-char * display_trump(int trump) {
+char * display_trump(const int trump) {
 	char *trumpDisp;
 	if (trump == 0) {
 		trumpDisp = "LoNo";
@@ -364,6 +378,34 @@ char * display_trump(int trump) {
 	return trumpDisp;
 }
 
-int is_blank_card(card_t card) {
+int is_blank_card(const card_t card) {
 	return compare_card_c(card, blank_card(), 1, 0);
+}
+
+int is_not_blank(const card_t card) {
+	return !is_blank_card(card);
+}
+
+int is_not_trump(const card_t card) {
+	return is_not_suit(card, TRUMP);
+}
+
+int is_trump(const card_t card) {
+	return is_suit(card, TRUMP);
+}
+
+int is_not_suit(const card_t card, const suit_t suit) {
+	return !is_suit(card, suit);
+}
+
+int is_suit(const card_t card, const suit_t suit) {
+	return card.colour == suit;
+}
+
+int is_rank(const card_t card, const value_t rank) {
+	return card.rank == rank;
+}
+
+int is_not_rank(const card_t card, const value_t rank) {
+	return !is_rank(card, rank);
 }
